@@ -1,0 +1,244 @@
+<?php 
+// $Id: pmt_mail_system.module,v 1.0 2010/06/16 07:35:39 Tuan Nguyen & Yen Pham
+?>
+<?php
+	define('LOG_FILE_NAME','maillog');
+	define('DEAL_SUCCESSFUL_LOG_FILE_NAME','dealsuccessfullog');
+	define('DEAL_UNSUCCESSFUL_LOG_FILE_NAME','dealunsuccessfullog');
+	define('LOG_DICRECTORY','log');
+?>
+<?php 
+
+/*Implement hook_perm*/
+function pmt_mail_perm(){
+	return array('access system mail');
+}
+/*Implement hook_theme*/
+
+function pmt_mail_theme() {
+	return array(		
+		'pmt_manual_mail' => array(
+			'template' =>  'templates/pmt-manual-mail',
+			'arguments' => array('arr_node'=>null),
+		),		
+	);
+}
+/*Implement hook_menu*/
+function pmt_mail_menu(){
+	$items = array();
+	
+	$items['admin/settings/system-mails']=array(
+		'title' => 'System mails',
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('manual_mail_form'),		
+		'access arguments' => array('access system mail'),				
+		'type' => MENU_NORMAL_ITEM,
+	);
+	$items['admin/settings/system-mails/send-mail'] = array(
+		'title' => 'Send Mails',
+		'access arguments' => array('access system mail'),
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('manual_mail_form'),
+		'type' => MENU_NORMAL_ITEM,
+	);
+    $items['admin/settings/system-mails/send-mail'] = array(
+		'title' => 'Send Mails',
+		'access arguments' => array('access system mail'),
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('manual_mail_form'),
+		'type' => MENU_NORMAL_ITEM,
+	);
+	$items['admin/settings/system-mails/import-mail'] = array(
+		'title' => 'Import data',		
+		'access arguments' => array('access system mail'),
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('import_mail_form'),		
+		'type' => MENU_LOCAL_TASK,
+	);
+    
+  return $items;
+}
+
+function pmt_mail($from='',$subject='',$userlist=array(),$body='',$template='',$category='')
+{	
+	$filepath = drupal_get_path('module','pmt_mail')+ '/'+ LOG_DICRECTORY + '/' + LOG_FILE_NAME;
+	// 02062010 change to html mail 
+		$headers = array(
+			'MIME-Version'              => '1.0',
+			'Content-Type'              => 'text/html;charset=UTF-8;format=flowed;delsp=yes',
+			'Content-Transfer-Encoding' => '8Bit',
+			'X-Mailer'                  => 'Drupal',			
+			'X-SMTPAPI'					=> '{'.trim($category).'}'
+			);	
+		$headers['From'] = $headers['Reply-To'] = $headers['Sender'] = $headers['Return-Path'] = $headers['Errors-To'] = $from;		
+		$message['subject']=$subject;
+		$message['body'] = theme($template,$body);		
+		
+		//drupal_set_message('<pre>abc'.print_r($category,1).'</pre>');
+		//drupal_set_message('<pre>'.print_r($headers,1).'</pre>');
+		// Build the default headers of PHP	
+		$headerss = "";	
+		foreach ($headers as $k=>$v)	$headerss .= "{$k}:{$v}\n";		
+		foreach($userlist as $to)	
+		{		
+			if(valid_email_address($to))
+			{				
+				$result = mail(trim($to), $message['subject'], $message['body'], $headerss);
+				if($result)
+					pmt_log_to_file($filepath,'succesful','invitation mail','Email Introduction');
+				else
+					pmt_log_to_file($filepath,'unsuccesful','invitation mail','Email Introduction');			
+			}
+		}
+}	
+		
+function pmt_log_to_file($filename,$email,$message,$level)
+{						
+	$filename +=$filename +'_'+ date('Ymd');	
+	if(!$handle=fopen(filename,'a'))
+	{
+		drupal_set_message('Can not open file '+ $filename);
+		return;
+	}	
+	$output = date('Y-mm-dd: H-i-s') + ' [' + $email + '] ['+ $level+'] '+ $message + '\n';
+	if (fwrite($handle,$output) === false)
+	{
+		drupal_set_message('Cannot write logs to file (' . $filename . ').  Have you set proper permissions?');// or handle your error
+		return false;
+	}
+	//Close the file handle.
+	fclose($handle);
+	return true;		
+}
+function manual_mail_form($form_state){
+
+  
+  $form['mail_from'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Mail send'),
+	'#default_value'=>  'Kenhbuonban.com <contact@kenhbuonban.com>',
+  );  
+  $form['from'] = array(
+    '#type' => 'textfield',
+    '#title' => t('From'),
+	'#default_value'=>  variable_get('pmt_mail_from',''),
+	'#required' => TRUE,
+  );
+  $form['to'] = array(
+    '#type' => 'textfield',
+    '#title' => t('to'),
+	'#default_value'=>  variable_get('pmt_mail_to',''),
+  );
+  
+  $form['node_list'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Node list'),
+	'#default_value' => variable_get('arr_node',''),
+	'#required' => TRUE,
+  );
+  
+  $form['mail_list'] = array(
+    '#type' => 'select',
+    '#title' => t('Mail from'),
+	'#default_value'=> variable_get('pmt_mail_ls',''),
+	'#options' => array(		
+		'kbb_users' => t('Email khac'),
+		'kbb_teens' => t('Email teens'),
+		'kbb_khong_tu' => t('Email khong tu'),
+		'users' => t('kenhbuonban'),
+    ),
+  );
+  $form['subject'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Subject'),
+	'#default_value'=> variable_get('pmt_mail_sj',''),
+  );
+  /*
+  $form['body'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Body'),
+	'#default_value'=> $form_state['storage']['body'],	
+  );  
+  */
+  //$form['format']=filter_form('edit-body');  	  
+  $form['send'] = array(
+    '#type' => 'submit',
+	'#value' => t('Send'),
+	'#prefix'=> '<div class="other-mail">',
+	'#suffix'=> '</div>',
+  );
+  return $form;
+}
+
+function manual_mail_form_submit($form, &$form_state){  
+
+	$arr_node = split('-',$form_state['values']['node_list']);
+	variable_set('arr_node',$form_state['values']['node_list']);
+	variable_set('pmt_mail_from',$form_state['values']['from']);
+	variable_set('pmt_mail_to',$form_state['values']['to']);
+	variable_set('pmt_mail_sj',$form_state['values']['subject']);
+	variable_set('pmt_mail_ls',$form_state['values']['mail_list']);
+	
+	$table = $form_state['values']['mail_list'];
+	$from = $form_state['values']['from'];
+	$to = $form_state['values']['to'];
+	$res = db_query("select mail from {". $table ."} LIMIT %d, %d ", $from, $to);
+	while($obj = db_fetch_object($res)){			
+		$message = array(
+			'id' => t('Manual mail'),
+			'to' => $obj->mail,
+			'subject' => $form_state['values']['subject'],
+			'body' => theme('pmt_manual_mail'),
+			'headers' => array('Content-Type'=>'text/html; charset=UTF-8; format=flowed;','From' => $form_state['values']['mail_from']),
+		);
+		//smo($message);
+		drupal_alter('mail', $message);
+		drupal_mail_send($message);	
+	}
+	$message = array(
+		'id' => t('Manual mail'),
+		'to' => 'linhcatcat@yahoo.com',
+		'subject' => $form_state['values']['subject'],
+		'body' => theme('pmt_manual_mail'),
+		'headers' => array('Content-Type'=>'text/html; charset=UTF-8; format=flowed;','From' => $form_state['values']['mail_from']),
+	);
+	//smo($message);
+	drupal_alter('mail', $message);
+	drupal_mail_send($message);	
+	$num_send = $from + $to;
+	drupal_set_message('Send mail successful to '. $num_send .'.');
+}
+
+function import_mail_form($form_state){
+
+  
+  $form['mail_file'] = array(
+    '#type' => 'textfield',
+    '#title' => t('File name'),
+	'#default_value'=>  variable_get('users_xx','users-01.txt'),
+  );   	  
+  $form['import'] = array(
+    '#type' => 'submit',
+	'#value' => t('Import'),
+  );
+  return $form;
+}
+function import_mail($mail){
+	db_query("insert into {kbb_khong_tu}(mail) values('%s')", $mail);
+}
+function import_mail_form_submit($form, &$form_state){
+	variable_set('users_xx',$form_state['values']['mail_file']);
+	$file_name = drupal_get_path('module', 'pmt_mail').'/'.$form_state['values']['mail_file'];
+	$file = fopen($file_name, "r") or exit("Unable to open file!");	
+	$i=0;
+	while(!feof($file)){
+		$mail = fgets($file);
+		if($i%2==0){
+			import_mail($mail);
+		}
+		$i++;
+	}
+	fclose($file);
+	drupal_set_message('Import '. $i .' mail successful.');
+}
+?>

@@ -1,0 +1,65 @@
+<?php
+	global $base_url;
+	$obj = db_query("SELECT node.nid AS nid, 
+			node.title AS node_title, 
+			node.language AS node_language, 
+			node.created AS node_created 
+		FROM node node  
+		WHERE (node.status <> 0) AND (node.type in ('loaixe')) 
+		ORDER BY node_created ASC");
+?>
+<div class="wrap-home-page">
+	<ul>
+		<?php $i = 0; ?>
+		<?php while($obj_rs = db_fetch_object($obj)){ ?>
+		<li data="row-<?php print $i; ?>" class="row-item"><?php print l($obj_rs->node_title,'san-pham/'.$obj_rs->nid.'/'.unicode_str_replace($obj_rs->node_title)) ?>
+			<ul id="row-<?php print $i; ?>">
+				<?php 
+				$i++;
+		$obj1 = db_query("SELECT node.nid AS nid,
+			node_data_field_sanpham_giagiam.field_sanpham_giagiam_value AS giagiam_value, 		
+			node.language AS node_language, 
+			node.type AS node_type, 
+			node.vid AS node_vid, 
+			node_data_field_sanpham_giagiam.field_sanpham_hinhanh_fid AS hinhanh_fid,
+			node_data_field_sanpham_giagiam.field_sanpham_giagoc_value AS giagoc_value, node_data_field_sanpham_giagiam.field_sanpham_tomtat_value AS tomtat_value, node.title AS node_title, 
+			node.created AS node_created 
+			FROM node node  
+				INNER JOIN content_type_sanpham node_data_field_sanpham_loaixe ON node.vid = node_data_field_sanpham_loaixe.vid 
+				LEFT JOIN content_type_sanpham node_data_field_sanpham_giagiam ON node.vid = node_data_field_sanpham_giagiam.vid 
+			WHERE (node.status <> 0) AND (node.type in ('sanpham')) AND (node_data_field_sanpham_loaixe.field_sanpham_loaixe_nid = '". $obj_rs->nid ."') 
+			ORDER BY node_created ASC
+			LIMIT 0, 3");
+				?>
+				<li>
+				<?php
+					
+					$flag = 0;
+					while($obj_rs1 = db_fetch_object($obj1)){ 
+					$flag = 1;
+					$arr = field_file_load($obj_rs1->hinhanh_fid);
+					$path = $arr['filepath'];
+					$url = $base_url .'/chi-tiet-sp/'. $obj_rs1->nid .'/gioi-thieu';
+				?>
+					<div class="item">
+						<div class="img">
+						<a href="<?php print $url; ?>"><img src="<?php print $base_url .'/'. $path; ?>"/></a>
+						</div>
+						<div class="title"><?php print l($obj_rs1->node_title, '/chi-tiet-sp/'. $obj_rs1->nid .'/gioi-thieu'); ?></div>
+						<div class="summ"><?php print $obj_rs1->tomtat_value; ?></div>
+						<div class="original-price"><span>Giá gốc:</span><span> <?php print number_format($obj_rs1->giagoc_value,0,',','.'); ?> VNĐ</span></div>
+						<div class="price"><span>Giá giảm:</span> <?php print number_format($obj_rs1->giagiam_value,0,',','.'); ?> VNĐ</div>
+					</div>
+				<?php 
+					}
+					if($flag==0){
+						print '<div class="center">Đang cập nhật thông tin!</div>';
+					}					
+				?>
+				<div class="clear"></div>
+				</li>
+			</ul>
+		</li>
+		<?php } ?>
+	</ul>
+</div>

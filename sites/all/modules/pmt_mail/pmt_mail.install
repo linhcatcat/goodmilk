@@ -1,0 +1,53 @@
+<?php
+// $Id: simplenews.install,v 1.8.2.31 2010/03/30 12:24:26 sutharsan Exp $
+
+/**
+ * @file
+ * Simplenews installation.
+ */
+
+/**
+ * Implementation of hook_schema().
+ */
+function pmt_mail_schema() {	
+	$schema['kbb_users'] = array(
+		'description' => 'Store All of Code',
+		'fields' => array(
+			'uid' => array(
+				'description' => 'Unique ID',
+				'type' => 'serial',
+				'unsigned' => TRUE,
+				'not null' => TRUE
+			),
+			'mail' => array(
+				'description' => 'Generate string',
+				'type' => 'varchar',
+				'length' => 50,
+				'not null' => TRUE,
+				'default' => ''
+			),			
+		),
+		'primary key' => array('uid'), 
+	);	
+	return $schema;
+}
+
+/**
+ * Implementation of hook_install().
+ */
+function pmt_mail_install() {
+	if (drupal_install_schema('pmt_mail')) {
+		drupal_set_message(t('pmt_mail was successfully installed.'));
+	} else {
+		drupal_set_message(t('The installation of pmt_mail was not successful.'), 'error');
+	}
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function pmt_mail_uninstall() {
+	drupal_uninstall_schema('pmt_mail');
+}
+
+

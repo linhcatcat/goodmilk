@@ -1,0 +1,10 @@
+; $Id: vsk_utilities.info,v 1.0 Exp $
+name = VSK_utilities
+description = VisiKard utilities of TT.
+package = VisiKard
+core = 6.x
+
+; Information added by ThangThien company packaging script on Feb-18-2012
+version = "6.x-1.0"
+core = "6.x"
+

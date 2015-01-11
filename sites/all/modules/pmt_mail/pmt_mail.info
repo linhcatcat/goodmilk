@@ -1,0 +1,8 @@
+; $Id: utilities.info,v 1.0 Exp $
+name = PMT Mail
+description = This module will be control all of mail functions.
+package = Phi Ma Tech
+core = 6.x
+; Information added by Phi Ma Tech company packaging script on Feb-25-2010
+version = "6.x-1.0"
+core = "6.x"
