@@ -54,6 +54,7 @@ stylesheets[all][]   = css/bootstrap-custom.css
 ;conditional-stylesheets[if lte IE 6][all][] = css/ie6.css
 
   ; Optionally add some JavaScripts to your theme.
+scripts[] = js/jquery.js
 scripts[] = js/script.js
 ;BOOTSTRAP
 scripts[] = js/bootstrap.js

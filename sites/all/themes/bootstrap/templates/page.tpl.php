@@ -117,30 +117,43 @@
   <?php print $scripts; ?>
 </head>
 <body class="<?php print $classes; ?>">
+
+<div id="myCarousel" class="carousel slide">
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <div class="active item"><img src="<?php echo drupal_get_path('theme', 'Bootstrap').'/images/slide-01.jpg'; ?>"/></div>
+    <div class="item"><img src="<?php echo drupal_get_path('theme', 'Bootstrap').'/images/slide-02.jpg'; ?>"/></div>
+    <div class="item"><img src="<?php echo drupal_get_path('theme', 'Bootstrap').'/images/slide-03.jpg'; ?>"/></div>
+  </div>
+</div>
+
+<?php if( drupal_is_front_page() ){ ?>
+<?php //echo "Hello"; ?>
+<?php } ?>
 <!--BOOTSTRAP-->
 <div class="navbar navbar-top">
       <div class="navbar-inner">
         <div class="container">
-        
+
       		<?php if ($logo): ?>
       		<div class="navlogo">
         		<a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo"><img class="blogo" src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" /></a>
         	</div>
-      		<?php endif; ?>      
-      		      
-    		 
-			<?php if (is_array($primary_links)) : ?> 
+      		<?php endif; ?>
+
+
+			<?php if (is_array($primary_links)) : ?>
 			<ul class="nav">
 				<?php foreach ($primary_links as $link): ?>
-				<li><?php            
+				<li><?php
         $href = $link['href'] == "<front>" ? base_path() : base_path() . $link['href'];
-        print "<a id='navlink' href='" . $href . "'>" . $link['title'] . "</a>";                
+        print "<a id='navlink' href='" . $href . "'>" . $link['title'] . "</a>";
         ?></li>
 				<?php endforeach; ?>
 			</ul>
 			<?php endif; ?>
-    			
-  			
+
+
       <?php
       if ($site_name || $site_slogan): ?>
         <div id="name-and-slogan">
@@ -162,7 +175,7 @@
         </div><!-- /#name-and-slogan -->
       <?php endif;
       ?>
-  			
+
 		</div>
 	</div>
 </div>
@@ -197,7 +210,7 @@
         <?php if ($tabs): ?>
           <div class="tabs"><?php print $tabs; ?></div>
         <?php endif; ?>
-        
+
         <?php print $help; ?>
 
         <?php print $content_top; ?>
@@ -207,7 +220,7 @@
         </div>
 
         <?php print $content_bottom; ?>
-        
+
         <!-- FEED ICONS-->
 
       </div></div><!-- /.section, /#content -->
@@ -236,7 +249,7 @@
 
     	<?php if ($feed_icons): ?>
           <div class="feed-icons"><?php print $feed_icons; ?></div>
-        <?php endif; ?>        		
+        <?php endif; ?>
 
         <?php if ($footer_message): ?>
           <div id="footer-message" style="width:30%;float:right;text-align:right;"><?php print $footer_message; ?></div>
