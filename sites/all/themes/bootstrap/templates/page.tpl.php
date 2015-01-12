@@ -106,165 +106,193 @@
  * @see zen_preprocess()
  * @see zen_process()
  */
+	global $base_url;
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php print $language->language; ?>" lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>">
 
 <head>
-  <title><?php print $head_title; ?></title>
-  <?php print $head; ?>
-  <?php print $styles; ?>
-  <?php print $scripts; ?>
+	<title><?php print $head_title; ?></title>
+	<?php print $head; ?>
+	<?php print $styles; ?>
+	<?php print $scripts; ?>
 </head>
 <body class="<?php print $classes; ?>">
 
 <div id="myCarousel" class="carousel slide">
-  <!-- Carousel items -->
-  <div class="carousel-inner">
-    <div class="active item"><img src="<?php echo drupal_get_path('theme', 'Bootstrap').'/images/slide-01.jpg'; ?>"/></div>
-    <div class="item"><img src="<?php echo drupal_get_path('theme', 'Bootstrap').'/images/slide-02.jpg'; ?>"/></div>
-    <div class="item"><img src="<?php echo drupal_get_path('theme', 'Bootstrap').'/images/slide-03.jpg'; ?>"/></div>
-  </div>
+	<!-- Carousel items -->
+	<div class="carousel-inner">
+		<div class="active item"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/slide-01.jpg'; ?>"/></div>
+		<div class="item"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/slide-02.jpg'; ?>"/></div>
+		<div class="item"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/slide-03.jpg'; ?>"/></div>
+	</div>
 </div>
 
 <?php if( drupal_is_front_page() ){ ?>
 <?php //echo "Hello"; ?>
 <?php } ?>
 <!--BOOTSTRAP-->
+<div class="container">
+	<div class="menu">
+		<div class="row-fluid">
+			<div class="span3">
+				<div class="well">
+				<?php if ($logo): ?>
+					<a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo"><img class="blogo" src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" /></a>
+				<?php endif; ?>
+				<?php if (is_array($primary_links)) : ?>
+					<ul class="nav nav-list">
+						<?php foreach ($primary_links as $link): ?>
+							<li>
+							<?php
+								$href = $link['href'] == "<front>" ? base_path() : base_path() . $link['href'];
+								print l($link['title'], $link['href']);
+								//print "<a href='" . $href . "'>" . $link['title'] . "</a>";
+							?>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				<?php endif; ?>
+				</div>
+			</div>
+			<div class="span9">323123</div>
+		</div>
+	</div>
+</div>
 <div class="navbar navbar-top">
-      <div class="navbar-inner">
-        <div class="container">
+			<div class="navbar-inner">
+				<div class="container">
 
-      		<?php if ($logo): ?>
-      		<div class="navlogo">
-        		<a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo"><img class="blogo" src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" /></a>
-        	</div>
-      		<?php endif; ?>
+					<?php if (!$logo): ?>
+					<div class="navlogo">
+						<a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo"><img class="blogo" src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" /></a>
+					</div>
+					<?php endif; ?>
 
 
 			<?php if (is_array($primary_links)) : ?>
 			<ul class="nav">
 				<?php foreach ($primary_links as $link): ?>
 				<li><?php
-        $href = $link['href'] == "<front>" ? base_path() : base_path() . $link['href'];
-        print "<a id='navlink' href='" . $href . "'>" . $link['title'] . "</a>";
-        ?></li>
+				$href = $link['href'] == "<front>" ? base_path() : base_path() . $link['href'];
+				print "<a id='navlink' href='" . $href . "'>" . $link['title'] . "</a>";
+				?></li>
 				<?php endforeach; ?>
 			</ul>
 			<?php endif; ?>
 
 
-      <?php
-      if ($site_name || $site_slogan): ?>
-        <div id="name-and-slogan">
-          <?php if ($site_name): ?>
-            <?php if ($title): ?>
-              <div id="site-name"><strong>
-                <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
-              </strong></div>
-            <?php else:  /* Use h1 when the content title is empty */ ?>
-              <h1 id="site-name">
-                <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
-              </h1>
-            <?php endif; ?>
-          <?php endif; ?>
+			<?php
+			if ($site_name || $site_slogan): ?>
+				<div id="name-and-slogan">
+					<?php if ($site_name): ?>
+						<?php if ($title): ?>
+							<div id="site-name"><strong>
+								<a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
+							</strong></div>
+						<?php else:  /* Use h1 when the content title is empty */ ?>
+							<h1 id="site-name">
+								<a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
+							</h1>
+						<?php endif; ?>
+					<?php endif; ?>
 
-          <?php if ($site_slogan): ?>
-            <div id="site-slogan" class="nav-smalltext"><?php print $site_slogan; ?></div>
-          <?php endif; ?>
-        </div><!-- /#name-and-slogan -->
-      <?php endif;
-      ?>
+					<?php if ($site_slogan): ?>
+						<div id="site-slogan" class="nav-smalltext"><?php print $site_slogan; ?></div>
+					<?php endif; ?>
+				</div><!-- /#name-and-slogan -->
+			<?php endif;
+			?>
 
 		</div>
 	</div>
 </div>
 
-  <div id="page-wrapper"><div id="page">
+	<div id="page-wrapper"><div id="page">
 
-    <div id="header"><div class="section clearfix">
+		<div id="header"><div class="section clearfix">
 
-      <?php if ($search_box): ?>
-        <div id="search-box"><?php print $search_box; ?></div>
-      <?php endif; ?>
+			<?php if ($search_box): ?>
+				<div id="search-box"><?php print $search_box; ?></div>
+			<?php endif; ?>
 
-      <?php print $header; ?>
+			<?php print $header; ?>
 
-    </div></div><!-- /.section, /#header -->
+		</div></div><!-- /.section, /#header -->
 
-    <div id="main-wrapper"><div id="main" class="clearfix">
+		<div id="main-wrapper"><div id="main" class="clearfix">
 
-      <div id="content" class="column"><div class="section">
+			<div id="content" class="column"><div class="section">
 
-        <?php if ($mission): ?>
-          <div id="mission"><?php print $mission; ?></div>
-        <?php endif; ?>
+				<?php if ($mission): ?>
+					<div id="mission"><?php print $mission; ?></div>
+				<?php endif; ?>
 
-        <?php print $highlight; ?>
+				<?php print $highlight; ?>
 
-        <?php print $breadcrumb; ?>
-        <?php if ($title): ?>
-          <h1 class="title"><?php print $title; ?></h1>
-        <?php endif; ?>
-        <?php print $messages; ?>
-        <?php if ($tabs): ?>
-          <div class="tabs"><?php print $tabs; ?></div>
-        <?php endif; ?>
+				<?php print $breadcrumb; ?>
+				<?php if ($title): ?>
+					<h1 class="title"><?php print $title; ?></h1>
+				<?php endif; ?>
+				<?php print $messages; ?>
+				<?php if ($tabs): ?>
+					<div class="tabs"><?php print $tabs; ?></div>
+				<?php endif; ?>
 
-        <?php print $help; ?>
+				<?php print $help; ?>
 
-        <?php print $content_top; ?>
+				<?php print $content_top; ?>
 
-        <div id="content-area">
-          <?php print $content; ?>
-        </div>
+				<div id="content-area">
+					<?php print $content; ?>
+				</div>
 
-        <?php print $content_bottom; ?>
+				<?php print $content_bottom; ?>
 
-        <!-- FEED ICONS-->
+				<!-- FEED ICONS-->
 
-      </div></div><!-- /.section, /#content -->
+			</div></div><!-- /.section, /#content -->
 
 
-      <?php print $sidebar_first; ?>
+			<?php print $sidebar_first; ?>
 
-      <?php print $sidebar_second; ?>
+			<?php print $sidebar_second; ?>
 
-    </div></div><!-- /#main, /#main-wrapper -->
+		</div></div><!-- /#main, /#main-wrapper -->
 
-    <?php if ($footer || $footer_message || $secondary_links): ?>
-      <div id="footer"><div class="section">
+		<?php if ($footer || $footer_message || $secondary_links): ?>
+			<div id="footer"><div class="section">
 
-        <?php print theme(array('links__system_secondary_menu', 'links'), $secondary_links,
-          array(
-            'id' => 'secondary-menu',
-            'class' => 'links clearfix',
-          ),
-          array(
-            'text' => t('Secondary menu'),
-            'level' => 'h2',
-            'class' => 'element-invisible',
-          ));
-        ?>
+				<?php print theme(array('links__system_secondary_menu', 'links'), $secondary_links,
+					array(
+						'id' => 'secondary-menu',
+						'class' => 'links clearfix',
+					),
+					array(
+						'text' => t('Secondary menu'),
+						'level' => 'h2',
+						'class' => 'element-invisible',
+					));
+				?>
 
-    	<?php if ($feed_icons): ?>
-          <div class="feed-icons"><?php print $feed_icons; ?></div>
-        <?php endif; ?>
+			<?php if ($feed_icons): ?>
+					<div class="feed-icons"><?php print $feed_icons; ?></div>
+				<?php endif; ?>
 
-        <?php if ($footer_message): ?>
-          <div id="footer-message" style="width:30%;float:right;text-align:right;"><?php print $footer_message; ?></div>
-        <?php endif; ?>
+				<?php if ($footer_message): ?>
+					<div id="footer-message" style="width:30%;float:right;text-align:right;"><?php print $footer_message; ?></div>
+				<?php endif; ?>
 
-        <?php print $footer; ?>
+				<?php print $footer; ?>
 
-      </div></div><!-- /.section, /#footer -->
-    <?php endif; ?>
+			</div></div><!-- /.section, /#footer -->
+		<?php endif; ?>
 
-  </div></div><!-- /#page, /#page-wrapper -->
+	</div></div><!-- /#page, /#page-wrapper -->
 
-  <?php print $page_closure; ?>
+	<?php print $page_closure; ?>
 
-  <?php print $closure; ?>
+	<?php print $closure; ?>
 
 </body>
 </html>

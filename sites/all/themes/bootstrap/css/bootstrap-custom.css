@@ -6,3 +6,52 @@
 	min-width: 100%;
 	max-height: 675px;
 }
+.carousel {
+	z-index: -1;
+}
+.container {
+	width: 1020px;
+}
+.menu #logo {
+	position: absolute;
+	top: -100px;
+	left: 25px;
+}
+.menu .well {
+	position: relative;
+	padding: 10px;
+	background: url("../images/bg-menu1.png") repeat scroll 0 0 transparent;
+	box-shadow: none;
+	border: none;
+	margin-top: 115px;
+}
+.menu .well ul {
+	background: url("../images/bg-menu2.png") repeat scroll 0 0 transparent;
+	-webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  	padding-top: 80px;
+  	padding-left: 0;
+  	padding-right: 0;
+
+}
+.menu .well ul li {
+	background: url("../images/line-menu.png") no-repeat scroll right 0 transparent;
+	padding-top: 1px;
+	text-align: right;
+	padding-right: 12px;
+}
+.menu .well ul li a {
+	height: 36px;
+	line-height: 36px;
+	padding: 0 10px 0 0;
+	margin: 0;
+	text-transform: uppercase;
+	font-size: 14px;
+	color: #0a7541;
+}
+.menu .well ul li a:hover,
+.menu .well ul li a.active {
+	background: url("../images/active-menu.png") no-repeat scroll right -2px transparent;
+	color: #fff;
+}
