@@ -1,0 +1,9 @@
+; $Id: my_utilities.info,v 1.0 Exp $
+name = My_utilities
+description = My utilities of LinhTran.
+package = My
+core = 6.x
+
+; Information added by LinhTran on Jan-13-2015
+version = "6.x-1.0"
+core = "6.x"

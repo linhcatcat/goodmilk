@@ -108,7 +108,7 @@
  */
 	global $base_url, $user;
 	$contact = node_load(array(
-	  	'type' => 'contact',
+		'type' => 'contact',
 	));
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -215,6 +215,7 @@
 			<div class="span5">
 				<?php
 					$time = time() - 60;
+					$time1 = time() - 120;
 					$count = db_result( db_query("SELECT count(*) FROM {sessions} WHERE timestamp > $time" ) );
 				?>
 				<p class="pagination-right">
@@ -222,9 +223,9 @@
 					Online: <?php print $count==0?1:$count; ?>
 				</p>
 				<?php
-				  	if( db_result( db_query("SELECT count(*) FROM {sessions} WHERE sid = '%s'",session_id()) ) == 0 ){
-				    	variable_set('site_pagehit', $pagehit+1);
-				  	}
+					if( db_result( db_query("SELECT count(*) FROM {sessions} WHERE timestamp > $time1 and sid = '%s'",session_id()) ) == 0 ){
+						variable_set('site_pagehit', $pagehit+1);
+					}
 				?>
 			</div>
 		</div>
