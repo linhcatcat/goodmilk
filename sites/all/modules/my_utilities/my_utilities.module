@@ -3,3 +3,33 @@
 function my_utilities_init() {
 	global $user;
 }
+
+/**
+ * 	Implementation of hook_theme().
+ */
+function my_utilities_theme() {
+	return array(
+		'intro_page' => array(
+			'template' =>'templates/intro',
+		)
+	);
+}
+
+function my_intro(){
+	return theme('intro_page');
+}
+
+/**
+ * 	Implementation of hook_menu().
+ */
+function my_utilities_menu() {
+	global $user;
+	$items = array();
+	$items['intro'] = array(
+		'title' => t(''),
+		'page callback' => 'my_intro',
+		'access arguments' => array('access content'),
+		'type' => MENU_CALLBACK,
+    );
+	return $items;
+}

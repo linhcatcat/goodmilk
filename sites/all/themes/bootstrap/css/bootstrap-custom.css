@@ -169,3 +169,15 @@ footer .container .pagination-right {
 	background: url("../images/icon-email.png") no-repeat scroll 0 0 transparent;
 	padding-left: 35px;
 }
+.youtube {
+	padding-left: 15px;
+	padding-top: 40px;
+}
+.main-title p.title{
+	font-size: 14px;
+	font-style: italic;
+}
+.main-content {
+    background: url("../images/bg-title.png") no-repeat scroll -100px 0 transparent;
+    padding-top: 20px;
+}
