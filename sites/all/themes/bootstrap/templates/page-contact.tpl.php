@@ -151,7 +151,7 @@
 				</div>
 			</div>
 			<div class="span9">
-				<div>
+				<div class="content1">
 					<div class="sub-title">
 						<?php if ($title): ?>
 							<h1 class="title"><?php print $title; ?></h1>
@@ -159,12 +159,13 @@
 					</div>
 					<div class="sub_content">
 						<div class="span6">
-							<h3>Thông tin yêu cầu</h3>
+							<h4>Thông tin yêu cầu</h4>
 							<?php print $content; ?>
 						</div>
 						<div class="span6">
-							<h3>Thông tin liên lạc</h3>
+							<h4>Thông tin liên lạc</h4>
 						</div>
+						<div class="clearfix"></div>
 					</div>
 				</div>
 			</div>
