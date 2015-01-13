@@ -10,9 +10,9 @@
 	z-index: -1;
 }
 .container {
-	width: 1020px;
+	max-width: 1020px;
 }
-.menu #logo {
+.menu .logo {
 	position: absolute;
 	top: -100px;
 	left: 25px;
@@ -33,7 +33,7 @@
   	padding-top: 80px;
   	padding-left: 0;
   	padding-right: 0;
-
+  	height: 435px;
 }
 .menu .well ul li {
 	background: url("../images/line-menu.png") no-repeat scroll right 0 transparent;
@@ -54,4 +54,43 @@
 .menu .well ul li a.active {
 	background: url("../images/active-menu.png") no-repeat scroll right -2px transparent;
 	color: #fff;
+}
+footer {
+	height: 140px;
+}
+.bg-footer{
+	height: 0;
+	position: relative;
+	z-index: -1;
+}
+.bg-footer img {
+	max-width: 100%;
+	min-width: 100%;
+	max-height: 80px;
+}
+footer .container {
+	padding-top: 40px;
+}
+footer .container .pagination-right {
+	padding-top: 60px;
+}
+.menu-footer {
+	margin-left: 0;
+}
+.menu-footer li {
+	display: inline-block;
+	background: url("../images/icon-square.jpg") no-repeat scroll 0 7px transparent;
+	padding-left: 10px;
+	margin-right: 10px;
+}
+.menu-footer li a:hover{
+	text-decoration: underline;
+}
+.menu-footer li a:hover,
+.menu-footer li a {
+	color: #0f1a62;
+}
+.link-social,
+.copyright {
+	color: #767676;
 }

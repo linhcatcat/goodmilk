@@ -106,7 +106,7 @@
  * @see zen_preprocess()
  * @see zen_process()
  */
-	global $base_url;
+	global $base_url, $user;
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php print $language->language; ?>" lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>">
@@ -119,6 +119,7 @@
 </head>
 <body class="<?php print $classes; ?>">
 
+<?php if($user->uid == 0){ ?>
 <div id="myCarousel" class="carousel slide">
 	<!-- Carousel items -->
 	<div class="carousel-inner">
@@ -132,13 +133,13 @@
 <?php //echo "Hello"; ?>
 <?php } ?>
 <!--BOOTSTRAP-->
-<div class="container">
-	<div class="menu">
+<header class="header">
+	<div class="container menu">
 		<div class="row-fluid">
 			<div class="span3">
 				<div class="well">
 				<?php if ($logo): ?>
-					<a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo"><img class="blogo" src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" /></a>
+					<a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo" class="logo"><img class="img-responsive" src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" /></a>
 				<?php endif; ?>
 				<?php if (is_array($primary_links)) : ?>
 					<ul class="nav nav-list">
@@ -158,7 +159,50 @@
 			<div class="span9">323123</div>
 		</div>
 	</div>
+</header>
+<div class="container">
+	<div class="row-fluid">
+		<div class="span12">
+			<?php print $content; ?>
+		</div>
+	</div>
 </div>
+<footer class="footer">
+	<div class="bg-footer"><img class="img-responsive" src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/bg-footer.png'; ?>" /></div>
+	<div class="container">
+		<div class="row-fluid">
+			<div class="span7">
+				<p class="link-social">Liên kết social:
+					<a href="#"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/f.png'; ?>" /></a>
+					<a href="#"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/t.png'; ?>" /></a>
+					<a href="#"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/l.png'; ?>" /></a>
+					<a href="#"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/g.png'; ?>" /></a>
+					<a href="#"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/y.png'; ?>" /></a>
+				</p>
+				<ul class="menu-footer">
+					<li><a href="#">Trang chủ</a></li>
+					<li><a href="#">Thông tin liên lac</a></li>
+					<li><a href="#">Điều khoản sử dụng</a></li>
+					<li><a href="#">Sơ đồ website</a></li>
+				</ul>
+				<p class="copyright">© 2014 Copyright by Goodmilk. All rights reserved.</p>
+			</div>
+			<div class="span5">
+
+				<p class="pagination-right">
+					Lượt truy cập: <?php print $pagehit = variable_get('site_pagehit',0); ?> -
+					Online: <?php print db_result( db_query("SELECT count(*) FROM {sessions}") ); ?>
+				</p>
+				<?php
+				  	if( db_result( db_query("SELECT count(*) FROM {sessions} WHERE sid = '%s'",session_id()) ) == 0 ){
+				    	variable_set('site_pagehit', $pagehit+1);
+				  	}
+				?>
+			</div>
+		</div>
+	</div>
+</footer>
+<?php } else { ?>
 <div class="navbar navbar-top">
 			<div class="navbar-inner">
 				<div class="container">
@@ -208,88 +252,88 @@
 	</div>
 </div>
 
-	<div id="page-wrapper"><div id="page">
+<div id="page-wrapper"><div id="page">
 
-		<div id="header"><div class="section clearfix">
+	<div id="header"><div class="section clearfix">
 
-			<?php if ($search_box): ?>
-				<div id="search-box"><?php print $search_box; ?></div>
-			<?php endif; ?>
-
-			<?php print $header; ?>
-
-		</div></div><!-- /.section, /#header -->
-
-		<div id="main-wrapper"><div id="main" class="clearfix">
-
-			<div id="content" class="column"><div class="section">
-
-				<?php if ($mission): ?>
-					<div id="mission"><?php print $mission; ?></div>
-				<?php endif; ?>
-
-				<?php print $highlight; ?>
-
-				<?php print $breadcrumb; ?>
-				<?php if ($title): ?>
-					<h1 class="title"><?php print $title; ?></h1>
-				<?php endif; ?>
-				<?php print $messages; ?>
-				<?php if ($tabs): ?>
-					<div class="tabs"><?php print $tabs; ?></div>
-				<?php endif; ?>
-
-				<?php print $help; ?>
-
-				<?php print $content_top; ?>
-
-				<div id="content-area">
-					<?php print $content; ?>
-				</div>
-
-				<?php print $content_bottom; ?>
-
-				<!-- FEED ICONS-->
-
-			</div></div><!-- /.section, /#content -->
-
-
-			<?php print $sidebar_first; ?>
-
-			<?php print $sidebar_second; ?>
-
-		</div></div><!-- /#main, /#main-wrapper -->
-
-		<?php if ($footer || $footer_message || $secondary_links): ?>
-			<div id="footer"><div class="section">
-
-				<?php print theme(array('links__system_secondary_menu', 'links'), $secondary_links,
-					array(
-						'id' => 'secondary-menu',
-						'class' => 'links clearfix',
-					),
-					array(
-						'text' => t('Secondary menu'),
-						'level' => 'h2',
-						'class' => 'element-invisible',
-					));
-				?>
-
-			<?php if ($feed_icons): ?>
-					<div class="feed-icons"><?php print $feed_icons; ?></div>
-				<?php endif; ?>
-
-				<?php if ($footer_message): ?>
-					<div id="footer-message" style="width:30%;float:right;text-align:right;"><?php print $footer_message; ?></div>
-				<?php endif; ?>
-
-				<?php print $footer; ?>
-
-			</div></div><!-- /.section, /#footer -->
+		<?php if ($search_box): ?>
+			<div id="search-box"><?php print $search_box; ?></div>
 		<?php endif; ?>
 
-	</div></div><!-- /#page, /#page-wrapper -->
+		<?php print $header; ?>
 
+	</div></div><!-- /.section, /#header -->
+
+	<div id="main-wrapper"><div id="main" class="clearfix">
+
+		<div id="content" class="column"><div class="section">
+
+			<?php if ($mission): ?>
+				<div id="mission"><?php print $mission; ?></div>
+			<?php endif; ?>
+
+			<?php print $highlight; ?>
+
+			<?php print $breadcrumb; ?>
+			<?php if ($title): ?>
+				<h1 class="title"><?php print $title; ?></h1>
+			<?php endif; ?>
+			<?php print $messages; ?>
+			<?php if ($tabs): ?>
+				<div class="tabs"><?php print $tabs; ?></div>
+			<?php endif; ?>
+
+			<?php print $help; ?>
+
+			<?php print $content_top; ?>
+
+			<div id="content-area">
+				<?php print $content; ?>
+			</div>
+
+			<?php print $content_bottom; ?>
+
+			<!-- FEED ICONS-->
+
+		</div></div><!-- /.section, /#content -->
+
+
+		<?php print $sidebar_first; ?>
+
+		<?php print $sidebar_second; ?>
+
+	</div></div><!-- /#main, /#main-wrapper -->
+
+	<?php if ($footer || $footer_message || $secondary_links): ?>
+		<div id="footer"><div class="section">
+
+			<?php print theme(array('links__system_secondary_menu', 'links'), $secondary_links,
+				array(
+					'id' => 'secondary-menu',
+					'class' => 'links clearfix',
+				),
+				array(
+					'text' => t('Secondary menu'),
+					'level' => 'h2',
+					'class' => 'element-invisible',
+				));
+			?>
+
+		<?php if ($feed_icons): ?>
+				<div class="feed-icons"><?php print $feed_icons; ?></div>
+			<?php endif; ?>
+
+			<?php if ($footer_message): ?>
+				<div id="footer-message" style="width:30%;float:right;text-align:right;"><?php print $footer_message; ?></div>
+			<?php endif; ?>
+
+			<?php print $footer; ?>
+
+		</div></div><!-- /.section, /#footer -->
+	<?php endif; ?>
+
+</div></div><!-- /#page, /#page-wrapper -->
+<?php } ?>
 	<?php print $page_closure; ?>
 
 	<?php print $closure; ?>
