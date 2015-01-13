@@ -2,6 +2,9 @@
 #myCarousel {
 	height: 0;
 }
+a {
+	color: #0f1a62;
+}
 h1.title {
 	text-transform: uppercase;
 	font-size: 24px;
@@ -147,4 +150,22 @@ footer .container .pagination-right {
 }
 .sub_content h4 {
 	margin-bottom: 10px;
+}
+.hotline ul {
+	margin-left: 0;
+	padding-top: 50px;
+}
+.hotline ul li {
+	display: inline-block;
+	font-size: 16px;
+	line-height: 20px;
+	margin-right: 15px;
+}
+.hotline ul li.phone {
+	background: url("../images/icon-phone.png") no-repeat scroll 0 0 transparent;
+	padding-left: 30px;
+}
+.hotline ul li.email {
+	background: url("../images/icon-email.png") no-repeat scroll 0 0 transparent;
+	padding-left: 35px;
 }

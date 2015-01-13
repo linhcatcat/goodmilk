@@ -107,6 +107,9 @@
  * @see zen_process()
  */
 	global $base_url, $user;
+	$contact = node_load(array(
+	  	'type' => 'contact',
+	));
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php print $language->language; ?>" lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>">
@@ -151,6 +154,16 @@
 				</div>
 			</div>
 			<div class="span9">
+				<div class="hotline">
+					<div class="span6">
+					</div>
+					<div class="span6">
+						<ul>
+							<li class="phone"><?php print $contact->field_contact_mobile[0]['value']; ?></li>
+							<li class="email"><?php print $contact->field_contact_email[0]['value']; ?></li>
+						</ul>
+					</div>
+				</div>
 				<div class="content1">
 					<div class="sub-title">
 						<?php if ($title): ?>
@@ -164,6 +177,13 @@
 						</div>
 						<div class="span6">
 							<h4>Thông tin liên lạc</h4>
+							<div>
+								<p><?php print $contact->field_contact_address[0]['value']; ?></p>
+								<p>Điện thoại: <?php print $contact->field_contact_phone[0]['value']; ?></p>
+								<p>Fax: <?php print $contact->field_contact_fax[0]['value']; ?></p>
+								<p>Email: <a mailto="<?php print $contact->field_contact_email[0]['value']; ?>"><?php print $contact->field_contact_email[0]['value']; ?></a></p>
+								<p>Website: <a target="_blank" href="<?php print $contact->field_contact_website[0]['value']; ?>"><?php print $contact->field_contact_website[0]['value']; ?></a></p>
+							</div>
 						</div>
 						<div class="clearfix"></div>
 					</div>
