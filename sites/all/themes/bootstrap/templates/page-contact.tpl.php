@@ -123,15 +123,9 @@
 <div id="myCarousel" class="carousel slide">
 	<!-- Carousel items -->
 	<div class="carousel-inner">
-		<div class="active item"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/slide-01.jpg'; ?>"/></div>
-		<div class="item"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/slide-02.jpg'; ?>"/></div>
-		<div class="item"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/slide-03.jpg'; ?>"/></div>
+		<div class="active item"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/slider-01.jpg'; ?>"/></div>
 	</div>
 </div>
-
-<?php if( drupal_is_front_page() ){ ?>
-<?php //echo "Hello"; ?>
-<?php } ?>
 <!--BOOTSTRAP-->
 <header class="header">
 	<div class="container menu">
@@ -156,17 +150,27 @@
 				<?php endif; ?>
 				</div>
 			</div>
-			<div class="span9">323123</div>
+			<div class="span9">
+				<div>
+					<div class="sub-title">
+						<?php if ($title): ?>
+							<h1 class="title"><?php print $title; ?></h1>
+						<?php endif; ?>
+					</div>
+					<div class="sub_content">
+						<div class="span6">
+							<h3>Thông tin yêu cầu</h3>
+							<?php print $content; ?>
+						</div>
+						<div class="span6">
+							<h3>Thông tin liên lạc</h3>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </header>
-<div class="container">
-	<div class="row-fluid">
-		<div class="span12">
-			<?php print $content; ?>
-		</div>
-	</div>
-</div>
 <footer class="footer">
 	<div class="bg-footer"><img class="img-responsive" src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/bg-footer.png'; ?>" /></div>
 	<div class="container">

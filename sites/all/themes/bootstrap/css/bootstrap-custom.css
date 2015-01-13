@@ -94,3 +94,32 @@ footer .container .pagination-right {
 .copyright {
 	color: #767676;
 }
+
+#contact-mail-page .form-item label {
+	display: none;
+}
+#contact-mail-page .grippie {
+	display: none;
+}
+#contact-mail-page .form-textarea {
+	resize: none;
+}
+#contact-mail-page .form-textarea,
+#contact-mail-page .form-text {
+	background-color: #d9d9d9;
+	color: #000;
+	margin-bottom: 0;
+	padding: 8px 18px;
+}
+#contact-mail-page .form-item {
+	margin: 6px 0;
+}
+#contact-mail-page #edit-submit {
+	background-color: #7fb335;
+	border: none;
+	font-size: 14px;
+	font-weight: 700;
+	color: #fff;
+	text-transform: uppercase;
+	padding: 10px 18px;
+}
