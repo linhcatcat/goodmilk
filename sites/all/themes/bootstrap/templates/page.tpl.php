@@ -188,10 +188,10 @@
 				<p class="copyright">© 2014 Copyright by Goodmilk. All rights reserved.</p>
 			</div>
 			<div class="span5">
-
+				<?php $time = time() - 60; var_dump($time); ?>
 				<p class="pagination-right">
 					Lượt truy cập: <?php print $pagehit = variable_get('site_pagehit',0); ?> -
-					Online: <?php print db_result( db_query("SELECT count(*) FROM {sessions}") ); ?>
+					Online: <?php print db_result( db_query("SELECT count(*) FROM {sessions} WHERE timestamp > $time" ) ); ?>
 				</p>
 				<?php
 				  	if( db_result( db_query("SELECT count(*) FROM {sessions} WHERE sid = '%s'",session_id()) ) == 0 ){
