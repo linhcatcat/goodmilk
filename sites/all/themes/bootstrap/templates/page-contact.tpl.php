@@ -181,7 +181,7 @@
 								<p><?php print $contact->field_contact_address[0]['value']; ?></p>
 								<p>Điện thoại: <?php print $contact->field_contact_phone[0]['value']; ?></p>
 								<p>Fax: <?php print $contact->field_contact_fax[0]['value']; ?></p>
-								<p>Email: <a mailto="<?php print $contact->field_contact_email[0]['value']; ?>"><?php print $contact->field_contact_email[0]['value']; ?></a></p>
+								<p>Email: <a href="mailto:<?php print $contact->field_contact_email[0]['value']; ?>"><?php print $contact->field_contact_email[0]['value']; ?></a></p>
 								<p>Website: <a target="_blank" href="<?php print $contact->field_contact_website[0]['value']; ?>"><?php print $contact->field_contact_website[0]['value']; ?></a></p>
 							</div>
 						</div>
