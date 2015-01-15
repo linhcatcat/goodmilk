@@ -17,6 +17,9 @@ function my_utilities_theme() {
 		),
 		'distribution_page' => array(
 			'template' =>'templates/distribution',
+		),
+		'recruitment_page' => array(
+			'template' =>'templates/recruitment',
 		)
 	);
 }
@@ -31,6 +34,10 @@ function my_home(){
 
 function my_distribution(){
 	return theme('distribution_page');
+}
+
+function my_recruitment(){
+	return theme('recruitment_page');
 }
 
 /**
@@ -54,6 +61,12 @@ function my_utilities_menu() {
 	$items['distribution'] = array(
 		'title' => t(''),
 		'page callback' => 'my_distribution',
+		'access arguments' => array('access content'),
+		'type' => MENU_CALLBACK,
+	);
+	$items['recruitment'] = array(
+		'title' => t(''),
+		'page callback' => 'my_recruitment',
 		'access arguments' => array('access content'),
 		'type' => MENU_CALLBACK,
 	);
