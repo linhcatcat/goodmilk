@@ -178,7 +178,15 @@
 	<div class="main-title">
 		<h2 class="title">Dòng sản phẩm</2>
 	</div>
+	<?php
+		$homeInfo = node_load(array(
+			'type' => 'home',
+		));
+	?>
 	<div class="main-content">
+		<div class="main-title">
+			<p class="title"><?php print $homeInfo->title; ?></p>
+		</div>
 		<div class="slider-wrap">
 			<div class="bg"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/bg-sp.png'; ?>"/></div>
 			<div class="slider lazy">
@@ -204,7 +212,33 @@
 			</script>
 		</div>
 	</div>
-	<?php print $content; ?>
+	<div class="content">
+		<ul class="home-tab nav nav-tabs" id="myTab">
+			<li class="active"><a href="#company" data-toggle="tab">THÔNG TIN CÔNG TY</a></li>
+			<li><a href="#trophic" data-toggle="tab">THÔNG TIN DINH DƯỠNG</a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div class="tab-pane active" id="company">
+				<div class="row-fluid">
+					<div class="span6">
+						<?php print $homeInfo->field_home_company_info[0]['value']; ?>
+					</div>
+					<div class="span6">
+						<iframe style="width:100%" height="310" src="<?php print $homeInfo->field_home_embed[0]['value']; ?>" frameborder="0" allowfullscreen></iframe>
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane" id="trophic">
+				<?php print $homeInfo->field_home_trophic_info[0]['value']; ?>
+			</div>
+		</div>
+		<script>
+			$('#myTab').tab();
+			//$('#myTab a:last').tab('show');
+		</script>
+		<?php //print $content; ?>
+	</div>
 </div>
 <footer class="footer">
 	<div class="bg-footer"><img class="img-responsive" src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/bg-footer.png'; ?>" /></div>

@@ -187,16 +187,46 @@ footer .container .pagination-right {
 	font-weight: 400;
 	text-transform: uppercase;
 }
-
-
-
-
+.content .nav-tabs {
+	margin-top: 30px;
+}
+.home-tab li a:hover{
+	color: #84be41;
+	background-color: #fff;
+}
+.home-tab li a {
+	border: none;
+	font-size: 16px;
+	text-transform: uppercase;
+}
+.home-tab li.active a:hover,
+.home-tab li.active a {
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 3px solid #ed1c24;
+	color: #84be41;
+}
+.home-tab > li:first-child a {
+	padding-left: 0;
+}
+.home-tab > li {
+	margin-bottom: -3px;
+}
+.home-tab {
+	border-bottom: 3px solid #84be41;
+}
+.content {
+	padding-bottom: 30px;
+}
 
 
 
 
 .slider-wrap{
-	margin:auto;padding:20px;width:980px;
+	margin: auto;
+	padding: 20px;
+	width: 980px;
 	position: relative;
 }
 .slider-wrap:after,.buttons::after{clear:both;content:"";display:table;}
