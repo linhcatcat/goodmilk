@@ -14,6 +14,9 @@ function my_utilities_theme() {
 		),
 		'home_page' => array(
 			'template' =>'templates/home',
+		),
+		'distribution_page' => array(
+			'template' =>'templates/distribution',
 		)
 	);
 }
@@ -24,6 +27,10 @@ function my_intro(){
 
 function my_home(){
 	return theme('home_page');
+}
+
+function my_distribution(){
+	return theme('distribution_page');
 }
 
 /**
@@ -41,6 +48,12 @@ function my_utilities_menu() {
 	$items['intro'] = array(
 		'title' => t(''),
 		'page callback' => 'my_intro',
+		'access arguments' => array('access content'),
+		'type' => MENU_CALLBACK,
+	);
+	$items['distribution'] = array(
+		'title' => t(''),
+		'page callback' => 'my_distribution',
 		'access arguments' => array('access content'),
 		'type' => MENU_CALLBACK,
 	);
