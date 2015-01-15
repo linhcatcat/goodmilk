@@ -65,13 +65,13 @@
  * Implementation of HOOK_theme().
  */
 function bootstrap_theme(&$existing, $type, $theme, $path) {
-  $hooks = zen_theme($existing, $type, $theme, $path);
-  // Add your theme hooks like this:
-  /*
-  $hooks['hook_name_here'] = array( // Details go here );
-  */
-  // @TODO: Needs detailed comments. Patches welcome!
-  return $hooks;
+	$hooks = zen_theme($existing, $type, $theme, $path);
+	// Add your theme hooks like this:
+	/*
+	$hooks['hook_name_here'] = array( // Details go here );
+	*/
+	// @TODO: Needs detailed comments. Patches welcome!
+	return $hooks;
 }
 
 /**
@@ -84,7 +84,7 @@ function bootstrap_theme(&$existing, $type, $theme, $path) {
  */
 /* -- Delete this line if you want to use this function
 function bootstrap_preprocess(&$vars, $hook) {
-  $vars['sample_variable'] = t('Lorem ipsum.');
+	$vars['sample_variable'] = t('Lorem ipsum.');
 }
 // */
 
@@ -96,14 +96,15 @@ function bootstrap_preprocess(&$vars, $hook) {
  * @param $hook
  *   The name of the template being rendered ("page" in this case.)
  */
-/* -- Delete this line if you want to use this function
-function bootstrap_preprocess_page(&$vars, $hook) {
-  $vars['sample_variable'] = t('Lorem ipsum.');
 
-  // To remove a class from $classes_array, use array_diff().
-  //$vars['classes_array'] = array_diff($vars['classes_array'], array('class-to-remove'));
+function bootstrap_preprocess_page(&$vars, $hook) {
+	//$vars['sample_variable'] = t('Lorem ipsum.');
+	$node = $vars['node'];
+	$vars['template_files'][] = 'page-node-'.$node->type;
+	// To remove a class from $classes_array, use array_diff().
+	//$vars['classes_array'] = array_diff($vars['classes_array'], array('class-to-remove'));
 }
-// */
+
 
 /**
  * Override or insert variables into the node templates.
@@ -115,14 +116,14 @@ function bootstrap_preprocess_page(&$vars, $hook) {
  */
 /* -- Delete this line if you want to use this function
 function bootstrap_preprocess_node(&$vars, $hook) {
-  $vars['sample_variable'] = t('Lorem ipsum.');
+	$vars['sample_variable'] = t('Lorem ipsum.');
 
-  // Optionally, run node-type-specific preprocess functions, like
-  // bootstrap_preprocess_node_page() or bootstrap_preprocess_node_story().
-  $function = __FUNCTION__ . '_' . $vars['node']->type;
-  if (function_exists($function)) {
-    $function($vars, $hook);
-  }
+	// Optionally, run node-type-specific preprocess functions, like
+	// bootstrap_preprocess_node_page() or bootstrap_preprocess_node_story().
+	$function = __FUNCTION__ . '_' . $vars['node']->type;
+	if (function_exists($function)) {
+		$function($vars, $hook);
+	}
 }
 // */
 
@@ -136,7 +137,7 @@ function bootstrap_preprocess_node(&$vars, $hook) {
  */
 /* -- Delete this line if you want to use this function
 function bootstrap_preprocess_comment(&$vars, $hook) {
-  $vars['sample_variable'] = t('Lorem ipsum.');
+	$vars['sample_variable'] = t('Lorem ipsum.');
 }
 // */
 
@@ -150,6 +151,6 @@ function bootstrap_preprocess_comment(&$vars, $hook) {
  */
 /* -- Delete this line if you want to use this function
 function bootstrap_preprocess_block(&$vars, $hook) {
-  $vars['sample_variable'] = t('Lorem ipsum.');
+	$vars['sample_variable'] = t('Lorem ipsum.');
 }
 // */

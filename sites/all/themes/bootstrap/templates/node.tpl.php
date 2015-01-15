@@ -70,7 +70,7 @@
  * @see zen_preprocess_node()
  * @see zen_process()
  */
-?>
+?>BBB
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix">
   <?php print $user_picture; ?>
 

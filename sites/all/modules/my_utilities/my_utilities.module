@@ -20,6 +20,12 @@ function my_utilities_theme() {
 		),
 		'recruitment_page' => array(
 			'template' =>'templates/recruitment',
+		),
+		'product_page' => array(
+			'template' =>'templates/product',
+		),
+		'news_page' => array(
+			'template' =>'templates/news',
 		)
 	);
 }
@@ -40,6 +46,14 @@ function my_recruitment(){
 	return theme('recruitment_page');
 }
 
+function my_product(){
+	return theme('product_page');
+}
+
+function my_news(){
+	return theme('news_page');
+}
+
 /**
  * 	Implementation of hook_menu().
  */
@@ -55,6 +69,18 @@ function my_utilities_menu() {
 	$items['intro'] = array(
 		'title' => t(''),
 		'page callback' => 'my_intro',
+		'access arguments' => array('access content'),
+		'type' => MENU_CALLBACK,
+	);
+	$items['product'] = array(
+		'title' => t(''),
+		'page callback' => 'my_product',
+		'access arguments' => array('access content'),
+		'type' => MENU_CALLBACK,
+	);
+	$items['news'] = array(
+		'title' => t(''),
+		'page callback' => 'my_news',
 		'access arguments' => array('access content'),
 		'type' => MENU_CALLBACK,
 	);
