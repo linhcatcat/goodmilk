@@ -177,7 +177,11 @@
 <div class="container">
 	<div class="row-fluid">
 		<div class="span12">123456
-			<?php print $content; ?>
+			<?php print $content;?>
+			<?php
+				$product_menu = menu_navigation_links('menu-product');
+				var_dump($product_menu);
+			?>
 		</div>
 	</div>
 </div>
