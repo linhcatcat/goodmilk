@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/slick.js"></script>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/slick.css">
+<style>
+body {
+	background-color: #3498db;
+}
+</style>
+</head>
+<body>
+<div class="slider-wrap">
+	<div class="bg"><img src="images/bg-sp.png"/></div>
+	<div class="slider lazy">
+		<div><div class="image"><a href="#" target="_blank"><img data-lazy="images/sp-01.png"/></a></div></div>
+		<div><div class="image"><a href="#" target="_blank"><img data-lazy="images/sp-02.png"/></a></div></div>
+		<div><div class="image"><a href="#" target="_blank"><img data-lazy="images/sp-03.png"/></a></div></div>
+		<div><div class="image"><a href="#" target="_blank"><img data-lazy="images/sp-04.png"/></a></div></div>
+		<div><div class="image"><a href="#" target="_blank"><img data-lazy="images/sp-05.png"/></a></div></div>
+		<div><div class="image"><a href="#" target="_blank"><img data-lazy="images/sp-06.png"/></a></div></div>
+		<div><div class="image"><a href="#" target="_blank"><img data-lazy="images/sp-03.png"/></a></div></div>
+		<div><div class="image"><a href="#" target="_blank"><img data-lazy="images/sp-02.png"/></a></div></div>
+		<div><div class="image"><a href="#" target="_blank"><img data-lazy="images/sp-05.png"/></a></div></div>
+		<div><div class="image"><a href="#" target="_blank"><img data-lazy="images/sp-06.png"/></a></div></div>
+	</div>
+	<script>
+	//http://kenwheeler.github.io/slick/
+	$('.lazy').slick({
+	  lazyLoad: 'ondemand',
+	  slidesToShow: 6,
+	  slidesToScroll: 1,
+	  touchMove: true
+	});
+	</script>
+</div>
+</body></html>

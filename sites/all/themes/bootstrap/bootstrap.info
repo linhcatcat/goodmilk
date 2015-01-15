@@ -55,6 +55,7 @@ stylesheets[all][]   = css/bootstrap-custom.css
 
   ; Optionally add some JavaScripts to your theme.
 scripts[] = js/jquery.js
+scripts[] = js/slick.js
 scripts[] = js/script.js
 ;BOOTSTRAP
 scripts[] = js/bootstrap.js
