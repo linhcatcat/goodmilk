@@ -40,6 +40,9 @@ function my_utilities_theme() {
 		'slideshow2_block' => array(
 			'template' =>'templates/slideshow2',
 		),
+		'footer_block' => array(
+			'template' =>'templates/footer',
+		),
 	);
 }
 
