@@ -121,9 +121,8 @@
 	<?php print $scripts; ?>
 </head>
 <body class="<?php print $classes; ?>">
-
 <?php if($user->uid == 0){ ?>
-<div id="myCarousel" class="carousel slide">
+<div id="myCarousel" class="carousel slide carousel-fade">
 	<!-- Carousel items -->
 	<div class="carousel-inner">
 		<div class="active item"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/slide-01.jpg'; ?>"/></div>

@@ -123,18 +123,12 @@
 <body class="<?php print $classes; ?>">
 
 <?php if($user->uid == 0){ ?>
-<div id="myCarousel" class="carousel slide carousel-fade">
+<div id="myCarousel" class="carousel slide">
 	<!-- Carousel items -->
 	<div class="carousel-inner">
-		<div class="active item"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/slide-01.jpg'; ?>"/></div>
-		<div class="item"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/slide-02.jpg'; ?>"/></div>
-		<div class="item"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/slide-03.jpg'; ?>"/></div>
+		<div class="active item"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/slider-01.jpg'; ?>"/></div>
 	</div>
 </div>
-
-<?php if( drupal_is_front_page() ){ ?>
-<?php //echo "Hello"; ?>
-<?php } ?>
 <!--BOOTSTRAP-->
 <header class="header">
 	<div class="container menu">
@@ -170,76 +164,26 @@
 						</ul>
 					</div>
 				</div>
+				<?php
+					$recruitment = node_load(array(
+						'type' => 'recruitment',
+					));
+				?>
+				<div class="content1">
+					<div class="sub-title">
+						<h1 class="title"><?php print $recruitment->title; ?></h1>
+					</div>
+					<div class="sub_content">
+						<div class="span12">
+							<?php print $recruitment->field_recruitment_content[0]['value']; ?>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </header>
-<div class="container">
-	<div class="main-title">
-		<h2 class="title">Dòng sản phẩm</2>
-	</div>
-	<?php
-		$homeInfo = node_load(array(
-			'type' => 'home',
-		));
-	?>
-	<div class="main-content">
-		<div class="main-title">
-			<p class="title"><?php print $homeInfo->title; ?></p>
-		</div>
-		<div class="slider-wrap">
-			<div class="bg"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/bg-sp.png'; ?>"/></div>
-			<div class="slider lazy">
-				<div><div class="image"><a href="#" target="_blank"><img data-lazy="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/sp-01.png'; ?>"/></a></div></div>
-				<div><div class="image"><a href="#" target="_blank"><img data-lazy="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/sp-02.png'; ?>"/></a></div></div>
-				<div><div class="image"><a href="#" target="_blank"><img data-lazy="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/sp-03.png'; ?>"/></a></div></div>
-				<div><div class="image"><a href="#" target="_blank"><img data-lazy="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/sp-04.png'; ?>"/></a></div></div>
-				<div><div class="image"><a href="#" target="_blank"><img data-lazy="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/sp-05.png'; ?>"/></a></div></div>
-				<div><div class="image"><a href="#" target="_blank"><img data-lazy="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/sp-06.png'; ?>"/></a></div></div>
-				<div><div class="image"><a href="#" target="_blank"><img data-lazy="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/sp-03.png'; ?>"/></a></div></div>
-				<div><div class="image"><a href="#" target="_blank"><img data-lazy="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/sp-02.png'; ?>"/></a></div></div>
-				<div><div class="image"><a href="#" target="_blank"><img data-lazy="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/sp-05.png'; ?>"/></a></div></div>
-				<div><div class="image"><a href="#" target="_blank"><img data-lazy="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/sp-06.png'; ?>"/></a></div></div>
-			</div>
-			<script>
-			$('.lazy').slick({
-			  	lazyLoad: 'ondemand',
-			  	slidesToShow: 6,
-			  	slidesToScroll: 1,
-			  	touchMove: true,
-			  	autoplay: true
-			});
-			</script>
-		</div>
-	</div>
-	<div class="content">
-		<ul class="home-tab nav nav-tabs" id="myTab">
-			<li class="active"><a href="#company" data-toggle="tab">THÔNG TIN CÔNG TY</a></li>
-			<li><a href="#trophic" data-toggle="tab">THÔNG TIN DINH DƯỠNG</a></li>
-		</ul>
-
-		<div class="tab-content">
-			<div class="tab-pane active" id="company">
-				<div class="row-fluid">
-					<div class="span6">
-						<?php print $homeInfo->field_home_company_info[0]['value']; ?>
-					</div>
-					<div class="span6">
-						<iframe style="width:100%" height="310" src="<?php print $homeInfo->field_home_embed[0]['value']; ?>" frameborder="0" allowfullscreen></iframe>
-					</div>
-				</div>
-			</div>
-			<div class="tab-pane" id="trophic">
-				<?php print $homeInfo->field_home_trophic_info[0]['value']; ?>
-			</div>
-		</div>
-		<script>
-			$('#myTab').tab();
-			//$('#myTab a:last').tab('show');
-		</script>
-		<?php //print $content; ?>
-	</div>
-</div>
 <footer class="footer">
 	<div class="bg-footer"><img class="img-responsive" src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/bg-footer.png'; ?>" /></div>
 	<div class="container">

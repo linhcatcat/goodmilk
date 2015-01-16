@@ -1,13 +1,13 @@
 <?php
 	global $base_url, $user;
+	$taxo = taxonomy_get_tree(1);
 ?>
 <div class="row-fluid">
-	<div class="span12">AAAAAA
+	<div class="span12">
 		<ul class="home-tab nav nav-tabs" id="myTab">
-			<li class="active"><a href="#" data-toggle="tab">Tin mới</a></li>
-			<li><a href="#" data-toggle="tab">Thông tin công ty</a></li>
-			<li><a href="#" data-toggle="tab">Thông tin dinh dưỡng</a></li>
-			<li><a href="#" data-toggle="tab">Tin khác</a></li>
+			<?php foreach ($taxo as $key => $item) { ?>
+			<li class="<?php print $item->tid==$tid?'active':''; ?>"><a href="<?php print $base_url .'/news/'. $item->tid .'/'. unicode_str_replace($item->name) ; ?>"><?php print $item->name; ?></a></li>
+			<?php } ?>
 		</ul>
 	</div>
 </div>
