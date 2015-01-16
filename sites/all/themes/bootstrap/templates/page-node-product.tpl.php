@@ -145,12 +145,31 @@
 					<a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo" class="logo"><img class="img-responsive" src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" /></a>
 				<?php endif; ?>
 				<?php if (is_array($primary_links)) : ?>
+				<?php
+					$active_product = false;
+					$arg0 = arg(0);
+					if( isset($arg0) && $arg0 == 'node' ) {
+						$arg1 = arg(1);
+						$arg2 = arg(2);
+						if( isset($arg1) && $arg1 && !isset($arg2) ) {
+							$node_product = node_load( $arg1 );
+							if( $node_product->type == 'product' ) {
+								$active_product = true;
+							}
+						}
+					}
+				?>
 					<ul class="nav nav-list">
 						<?php foreach ($primary_links as $link): ?>
 							<li>
 							<?php
 								$href = $link['href'] == "<front>" ? base_path() : base_path() . $link['href'];
-								print l($link['title'], $link['href']);
+								$node_menu = explode('/', $link['href']);
+								if( $active_product && $node_menu[0] == 'node' ) {
+									print l($link['title'], $link['href'], array('attributes' => array('class' => 'active')));
+								} else {
+									print l($link['title'], $link['href']);
+								}
 								//print "<a href='" . $href . "'>" . $link['title'] . "</a>";
 							?>
 							</li>
@@ -169,19 +188,63 @@
 							<li class="email"><?php print $contact->field_contact_email[0]['value']; ?></li>
 						</ul>
 					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="product-image">
+					<?php if( $node_product->field_product_image[0] ){ ?>
+					<img src="<?php print $base_url .'/'. $node_product->field_product_image[0]['filepath'] ?>" />
+					<?php } ?>
 				</div>
 			</div>
 		</div>
 	</div>
 </header>
-<div class="container">
-	<div class="row-fluid">
-		<div class="span12">123456
-			<?php print $content;?>
+<div class="container product">
+	<div class="sub-title"><h2 class="title">Dòng sản phẩm</h2></div>
+	<div class="main-content row-fluid">
+		<div class="span3">
+		    <ul class="nav nav-tabs nav-stacked vertical-menu">
 			<?php
 				$product_menu = menu_navigation_links('menu-product');
-				var_dump($product_menu);
+				foreach ($product_menu as $key => $menu) {
+					print '<li>' . l($menu['title'], $menu['href']) . '</li>';
+				}
 			?>
+			</ul>
+		</div>
+		<div class="span9">
+			<div class="content">
+				<div class="row-fluid">
+					<div class="span12">
+						<?php print $node_product->field_product_content[0]['value']; ?>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span12">
+						<ul class="home-tab nav nav-tabs" id="myTab">
+							<li class="active"><a href="#trophic" data-toggle="tab">THÔNG TIN DINH DƯỠNG</a></li>
+							<li><a href="#instruction" data-toggle="tab">Hướng đã sử dụng và bảo quản</a></li>
+						</ul>
+
+						<div class="tab-content">
+							<div class="tab-pane active" id="trophic">
+								<div class="row-fluid">
+									<div class="span12">
+										<?php print $node_product->field_product_trophic[0]['value']; ?>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane" id="instruction">
+								<?php print $node_product->field_product_instruction[0]['value']; ?>
+							</div>
+						</div>
+						<script>
+							$('#myTab').tab();
+						</script>
+					</div>
+				</div>
+			</div>
+			<?php //print $content;?>
 		</div>
 	</div>
 </div>

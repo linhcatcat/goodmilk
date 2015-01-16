@@ -140,6 +140,13 @@ footer .container .pagination-right {
 .sub-title h1 {
 	padding-left: 20px;
 }
+.sub-title h2 {
+	font-size: 24px;
+	font-weight: 400;
+	color: #e51824;
+	text-transform: uppercase;
+	padding-left: 20px;
+}
 .sub_content {
 	background: url("../images/bg-title.png") no-repeat scroll -100px 0 transparent;
 	padding-left: 20px;
@@ -219,6 +226,35 @@ footer .container .pagination-right {
 .content {
 	padding-bottom: 30px;
 }
+ul.nav-stacked.vertical-menu {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.nav-stacked.vertical-menu li {
+	margin-bottom: 0;
+}
+.nav-stacked.vertical-menu li a {
+	border-bottom: 1px solid #dadada;
+	border-left: none;
+	border-top: none;
+	border-right: none;
+	text-align: right;
+	font-size: 14px;
+	color: #0a7541;
+}
+.nav-stacked.vertical-menu li a.active,
+.nav-stacked.vertical-menu li a:hover {
+	color: #e30613;
+	background-color: #fff;
+}
+.product-image {
+	padding-top: 150px;
+}
+
+
+
+
+
 
 
 
