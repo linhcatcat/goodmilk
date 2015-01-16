@@ -123,14 +123,8 @@
 <body class="<?php print $classes; ?>">
 
 <?php if($user->uid == 0){ ?>
-<div id="myCarousel" class="carousel slide carousel-fade">
-	<!-- Carousel items -->
-	<div class="carousel-inner">
-		<div class="active item"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/slide-01.jpg'; ?>"/></div>
-		<div class="item"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/slide-02.jpg'; ?>"/></div>
-		<div class="item"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/slide-03.jpg'; ?>"/></div>
-	</div>
-</div>
+
+<?php print theme('slideshow1_block'); ?>
 
 <?php if( drupal_is_front_page() ){ ?>
 <?php //echo "Hello"; ?>
@@ -187,30 +181,7 @@
 		<div class="main-title">
 			<p class="title"><?php print $homeInfo->title; ?></p>
 		</div>
-		<div class="slider-wrap">
-			<div class="bg"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/bg-sp.png'; ?>"/></div>
-			<div class="slider lazy">
-				<div><div class="image"><a href="#" target="_blank"><img data-lazy="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/sp-01.png'; ?>"/></a></div></div>
-				<div><div class="image"><a href="#" target="_blank"><img data-lazy="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/sp-02.png'; ?>"/></a></div></div>
-				<div><div class="image"><a href="#" target="_blank"><img data-lazy="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/sp-03.png'; ?>"/></a></div></div>
-				<div><div class="image"><a href="#" target="_blank"><img data-lazy="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/sp-04.png'; ?>"/></a></div></div>
-				<div><div class="image"><a href="#" target="_blank"><img data-lazy="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/sp-05.png'; ?>"/></a></div></div>
-				<div><div class="image"><a href="#" target="_blank"><img data-lazy="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/sp-06.png'; ?>"/></a></div></div>
-				<div><div class="image"><a href="#" target="_blank"><img data-lazy="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/sp-03.png'; ?>"/></a></div></div>
-				<div><div class="image"><a href="#" target="_blank"><img data-lazy="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/sp-02.png'; ?>"/></a></div></div>
-				<div><div class="image"><a href="#" target="_blank"><img data-lazy="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/sp-05.png'; ?>"/></a></div></div>
-				<div><div class="image"><a href="#" target="_blank"><img data-lazy="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/sp-06.png'; ?>"/></a></div></div>
-			</div>
-			<script>
-			$('.lazy').slick({
-			  	lazyLoad: 'ondemand',
-			  	slidesToShow: 6,
-			  	slidesToScroll: 1,
-			  	touchMove: true,
-			  	autoplay: true
-			});
-			</script>
-		</div>
+		<?php print theme('slider_block'); ?>
 	</div>
 	<div class="content">
 		<ul class="home-tab nav nav-tabs" id="myTab">

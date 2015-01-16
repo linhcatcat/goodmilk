@@ -123,12 +123,9 @@
 <body class="<?php print $classes; ?>">
 
 <?php if($user->uid == 0){ ?>
-<div id="myCarousel" class="carousel slide">
-	<!-- Carousel items -->
-	<div class="carousel-inner">
-		<div class="active item"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/slider-01.jpg'; ?>"/></div>
-	</div>
-</div>
+
+<?php print theme('slideshow2_block'); ?>
+
 <!--BOOTSTRAP-->
 <header class="header">
 	<div class="container menu">

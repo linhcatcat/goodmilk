@@ -31,6 +31,15 @@ function my_utilities_theme() {
 			'template' => 'templates/news-cate',
 			'arguments' => array('tid' => NULL),
 		),
+		'slider_block' => array(
+			'template' =>'templates/slider',
+		),
+		'slideshow1_block' => array(
+			'template' =>'templates/slideshow1',
+		),
+		'slideshow2_block' => array(
+			'template' =>'templates/slideshow2',
+		),
 	);
 }
 

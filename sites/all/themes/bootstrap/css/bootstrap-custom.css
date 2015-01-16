@@ -43,7 +43,7 @@ h1.title {
   	padding-top: 80px;
   	padding-left: 0;
   	padding-right: 0;
-  	height: 380px;
+  	height: 400px;
 }
 .menu .well ul li {
 	background: url("../images/line-menu.png") no-repeat scroll right 0 transparent;
@@ -314,6 +314,14 @@ ul.nav-stacked.vertical-menu {
 }
 .item-list .pager li.pager-last a {
 	background: url("../images/last.png") no-repeat scroll center center transparent;
+}
+.news .sub-title h2.title {
+	padding-left: 100px;
+}
+.news .sub-title h2.title,
+.news h1.title {
+	color: #86c01f;
+	font-weight: 400;
 }
 
 

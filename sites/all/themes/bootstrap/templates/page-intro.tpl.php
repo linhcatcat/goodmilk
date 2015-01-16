@@ -126,14 +126,8 @@
 <body class="<?php print $classes; ?>">
 
 <?php if($user->uid == 0){ ?>
-<div id="myCarousel" class="carousel slide">
-	<!-- Carousel items -->
-	<div class="carousel-inner">
-		<div class="active item"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/slide-01.jpg'; ?>"/></div>
-		<div class="item"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/slide-02.jpg'; ?>"/></div>
-		<div class="item"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/slide-03.jpg'; ?>"/></div>
-	</div>
-</div>
+
+<?php print theme('slideshow1_block'); ?>
 
 <?php if( drupal_is_front_page() ){ ?>
 <?php //echo "Hello"; ?>
