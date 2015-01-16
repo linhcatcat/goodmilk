@@ -121,14 +121,19 @@
 	<?php print $scripts; ?>
 </head>
 <body class="<?php print $classes; ?>">
-
 <?php if($user->uid == 0){ ?>
-<div id="myCarousel" class="carousel slide">
+<div id="myCarousel" class="carousel slide carousel-fade">
 	<!-- Carousel items -->
 	<div class="carousel-inner">
-		<div class="active item"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/slider-01.jpg'; ?>"/></div>
+		<div class="active item"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/slide-01.jpg'; ?>"/></div>
+		<div class="item"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/slide-02.jpg'; ?>"/></div>
+		<div class="item"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/slide-03.jpg'; ?>"/></div>
 	</div>
 </div>
+
+<?php if( drupal_is_front_page() ){ ?>
+<?php //echo "Hello"; ?>
+<?php } ?>
 <!--BOOTSTRAP-->
 <header class="header">
 	<div class="container menu">
@@ -139,12 +144,31 @@
 					<a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo" class="logo"><img class="img-responsive" src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" /></a>
 				<?php endif; ?>
 				<?php if (is_array($primary_links)) : ?>
+				<?php
+					$active_news = false;
+					$arg0 = arg(0);
+					if( isset($arg0) && $arg0 == 'node' ) {
+						$arg1 = arg(1);
+						$arg2 = arg(2);
+						if( isset($arg1) && $arg1 && !isset($arg2) ) {
+							$node_news = node_load( $arg1 );
+							if( $node_news->type == 'news' ) {
+								$active_news = true;
+							}
+						}
+					}
+				?>
 					<ul class="nav nav-list">
 						<?php foreach ($primary_links as $link): ?>
 							<li>
 							<?php
 								$href = $link['href'] == "<front>" ? base_path() : base_path() . $link['href'];
-								print l($link['title'], $link['href']);
+								$node_menu = explode('/', $link['href']);
+								if( $active_news && $node_menu[0] == 'news' ) {
+									print l($link['title'], $link['href'], array('attributes' => array('class' => 'active')));
+								} else {
+									print l($link['title'], $link['href']);
+								}
 								//print "<a href='" . $href . "'>" . $link['title'] . "</a>";
 							?>
 							</li>
@@ -163,27 +187,48 @@
 							<li class="email"><?php print $contact->field_contact_email[0]['value']; ?></li>
 						</ul>
 					</div>
+					<div class="clearfix"></div>
 				</div>
-				<?php
-					$recruitment = node_load(array(
-						'type' => 'recruitment',
-					));
-				?>
-				<div class="content1">
-					<div class="sub-title">
-						<h1 class="title"><?php print $recruitment->title; ?></h1>
-					</div>
-					<div class="sub_content">
-						<div class="span12">
-							<?php print $recruitment->field_recruitment_content[0]['value']; ?>
-						</div>
-						<div class="clearfix"></div>
-					</div>
+				<div class="product-image">
 				</div>
 			</div>
 		</div>
 	</div>
 </header>
+<div class="container product">
+	<div class="sub-title"><h2 class="title">Dòng sản phẩm</h2></div>
+	<div class="main-content row-fluid">
+		<div class="span3">
+		    <ul class="nav nav-tabs nav-stacked vertical-menu">
+			<?php
+				$aTids = array();
+				foreach ($node_news->taxonomy as $tid => $taxo_itemt) {
+					$aTids[] = $tid;
+				}
+				$taxo = taxonomy_get_tree(1);
+				foreach ($taxo as $key => $item) {
+					if( in_array($item->tid, $aTids) ){
+						print '<li>' . l($item->name, '/news/'. $item->tid .'/'. unicode_str_replace($item->name), array('attributes' => array('class' => 'active'))) . '</li>';
+					} else {
+						print '<li>' . l($item->name, '/news/'. $item->tid .'/'. unicode_str_replace($item->name)) . '</li>';
+					}
+				}
+			?>
+			</ul>
+		</div>
+		<div class="span9">
+			<h1 class="title"><?php print $node_news->title; ?></h1>
+			<div class="main-content content">
+				<div class="row-fluid">
+					<div class="span12">
+						<?php print $node_news->field_news_content[0]['value']; ?>
+					</div>
+				</div>
+			</div>
+			<?php //print $content;?>
+		</div>
+	</div>
+</div>
 <footer class="footer">
 	<div class="bg-footer"><img class="img-responsive" src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/bg-footer.png'; ?>" /></div>
 	<div class="container">

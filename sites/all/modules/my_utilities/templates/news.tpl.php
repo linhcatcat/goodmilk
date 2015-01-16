@@ -2,7 +2,7 @@
 	global $base_url, $user;
 ?>
 <div class="row-fluid">
-	<div class="span12">AAAAAA
+	<div class="span12">
 		<ul class="home-tab nav nav-tabs" id="myTab">
 			<li class="active"><a href="#" data-toggle="tab">Tin mới</a></li>
 			<li><a href="#" data-toggle="tab">Thông tin công ty</a></li>
