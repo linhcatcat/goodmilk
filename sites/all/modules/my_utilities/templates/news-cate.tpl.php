@@ -14,6 +14,7 @@
 	 	WHERE (node.status <> 0) AND (node.type in ('news')) AND (term_node.tid = ". $tid .")
 	   	ORDER BY node_changed DESC";
 	$obj = pager_query($sql,$pager_limit, 0, NULL);
+	$flag = true;
 ?>
 <div class="row-fluid">
 	<div class="span12">
@@ -26,6 +27,7 @@
 </div>
 <?php while($obj_rs = db_fetch_object($obj)){ ?>
 	<?php
+		$flag = false;
 		$arr = field_file_load($obj_rs->news_images_fid);
 		$path = $arr['filepath'];
 		$url = drupal_get_path_alias('node/'. $obj_rs->nid);
@@ -44,5 +46,7 @@
 	<div class="clearfix"></div>
 </div>
 <?php } ?>
-
+<?php if( $flag ){
+	print "<p class='pagination-centered'>Đang cập nhật thông tin</p>";
+} ?>
 <?php print theme('pager', NULL, $pager_limit, 0); ?>
