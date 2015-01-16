@@ -275,6 +275,48 @@ ul.nav-stacked.vertical-menu {
 .text .summary {
 	font-size: 13px;
 }
+.news-item {
+	margin-bottom: 20px;
+}
+
+.item-list .pager li.pager-current {
+	background-color: #ed1c24;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: #fff;
+	-webkit-border-radius: 15px;
+     -moz-border-radius: 15px;
+          border-radius: 15px;
+}
+.item-list .pager li a {
+	border: none;
+}
+.item-list .pager li.pager-first a,
+.item-list .pager li.pager-previous a,
+.item-list .pager li.pager-next a,
+.item-list .pager li.pager-last a {
+	color: transparent;
+	padding-left: 0;
+	padding-right: 0;
+}
+.item-list .pager li.pager-first a {
+	background: url("../images/first.png") no-repeat scroll center center transparent;
+}
+.item-list .pager li.pager-previous {
+	padding-left: 0;
+	padding-right: 0;
+}
+.item-list .pager li.pager-previous a {
+	background: url("../images/previous.png") no-repeat scroll center center transparent;
+}
+.item-list .pager li.pager-next a {
+	background: url("../images/next.png") no-repeat scroll center center transparent;
+}
+.item-list .pager li.pager-last a {
+	background: url("../images/last.png") no-repeat scroll center center transparent;
+}
+
+
 
 
 
