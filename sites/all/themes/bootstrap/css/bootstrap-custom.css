@@ -323,7 +323,16 @@ ul.nav-stacked.vertical-menu {
 	color: #86c01f;
 	font-weight: 400;
 }
-
+.user-login {
+	padding-top: 50px;
+}
+.user-login form {
+	width: 220px;
+	margin: 0 auto;
+}
+.user-login .description {
+	display: none;
+}
 
 
 

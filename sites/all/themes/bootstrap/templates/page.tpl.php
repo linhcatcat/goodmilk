@@ -163,6 +163,10 @@
 							<li class="email"><?php print $contact->field_contact_email[0]['value']; ?></li>
 						</ul>
 					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="user-login">
+					<?php print $content; ?>
 				</div>
 			</div>
 		</div>
@@ -171,7 +175,7 @@
 <div class="container">
 	<div class="row-fluid">
 		<div class="span12">
-			<?php print $content; ?>
+			<?php //print $content; ?>
 		</div>
 	</div>
 </div>

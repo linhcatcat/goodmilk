@@ -12,6 +12,7 @@
 	width: 390px;
 }
 .box-inner > form fieldset.collapsible,
+.box-inner > form .password-description,
 .box-inner > form .description {
-	display: none;
+	display: none !important;
 }
