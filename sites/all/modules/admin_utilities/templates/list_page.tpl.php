@@ -3,7 +3,10 @@
 	FROM {node} n WHERE n.type = "%s"', $type);
 	//my_set_message('Xin chao');
 	$arrAdds = array('product', 'news', 'recruitment');
+	global $base_url;
+	$path = $base_url .'/'. drupal_get_path('theme', 'admin') .'/admin/';
 ?>
+<script src="<?php print $path; ?>bower_components/jquery/jquery.min.js"></script>
 <div class="box-header well" data-original-title="">
     <h2>
     	<i class="glyphicon glyphicon-user"></i>
