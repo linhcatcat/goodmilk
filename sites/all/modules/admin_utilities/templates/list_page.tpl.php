@@ -9,7 +9,7 @@
     	<i class="glyphicon glyphicon-user"></i>
     	<?php
     		if(in_array($type, $arrAdds)) {
-    			print l('Add '.$type, 'add/node/'.$type.'?distination=admin-menu/'.$type);
+    			print l('Add '.$type,'node/add/'.$type, array('query' => array('distination' => 'admin-menu/'.$type)));
     		}
     	?>
     </h2>
@@ -34,20 +34,12 @@
 		<?php while ($node = db_fetch_object($result)) { ?>
 		<tr>
 	        <td><?php print $node->title; ?></td>
-	        <td class="center"><?php date('d-m-Y H:s', $node->created); ?></td>
+	        <td class="center"><?php print date('d-m-Y H:s', $node->created); ?></td>
 	        <td class="center">
-	            <a class="btn btn-success" href="#">
-	                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
-	                View
-	            </a>
-	            <a class="btn btn-info" href="#">
-	                <i class="glyphicon glyphicon-edit icon-white"></i>
-	                Edit
-	            </a>
-	            <a class="btn btn-danger" href="#">
-	                <i class="glyphicon glyphicon-trash icon-white"></i>
-	                Delete
-	            </a>
+	            <?php print l('<i class="glyphicon glyphicon-edit icon-white"></i> edit', 'node/'.$node->nid.'/edit', array('query' => array('destination' => 'admin-menu/'.$type), 'html' => true, 'attributes' => array('class' => 'btn btn-info'))); ?>
+	            <?php if(in_array($type, $arrAdds)) { ?>
+	            	<?php print l('<i class="glyphicon glyphicon-trash icon-white"></i> Delete', 'node/'.$node->nid.'/delete', array('query' => array('destination' => 'admin-menu/'.$type), 'html' => true, 'attributes' => array('class' => 'btn btn-danger'))); ?>
+	            <?php } ?>
 	        </td>
 	    </tr>
 		<?php } ?>

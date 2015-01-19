@@ -38,3 +38,17 @@ function admin_utilities_menu() {
 	);
 	return $items;
 }
+
+/**
+ * Implementation of hook_user().
+ */
+function admin_utilities_user($op, &$edit, &$account, $category = NULL){
+	global $user;
+	switch($op) {
+		case 'login':
+			if( in_array('admin user', $user->roles) ) {
+				drupal_goto('admin-menu/product');
+			}
+			break;
+	}
+}

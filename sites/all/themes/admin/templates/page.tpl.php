@@ -116,8 +116,8 @@
 <head>
 	<title><?php print $head_title; ?></title>
 	<?php print $head; ?>
-	<?php //print $styles; ?>
-
+	<?php print $styles; ?>
+	<?php print $scripts; ?>
 
 	<!-- The styles -->
     <link href="<?php print $path; ?>css/bootstrap-cerulean.min.css" rel="stylesheet">
@@ -137,16 +137,13 @@
     <link href='<?php print $path; ?>css/animate.min.css' rel='stylesheet'>
 
     <!-- jQuery -->
-    <script src="<?php print $path; ?>bower_components/jquery/jquery.min.js"></script>
+
 
     <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-
-
-	<?php //print $scripts; ?>
 </head>
 <body class="<?php print $classes; ?>">
 
@@ -161,19 +158,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><span>Good Milk</span></a>
+            <?php print l('<span>Good Milk</span>', 'admin-menu/product', array('html' => true, 'attributes' => array('class' => 'navbar-brand'))); ?>
 
             <!-- user dropdown starts -->
             <div class="btn-group pull-right">
-                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    <i class="glyphicon glyphicon-user"></i><span class="hidden-sm hidden-xs"> <?php print $user->name; ?></span>
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><?php print l('Profile', 'user/'. $user->uid .'/edit'); ?></li>
-                    <li class="divider"></li>
-                    <li><?php print l('Logout', 'logout'); ?></li>
-                </ul>
+            	<?php print l($user->name, 'user/'. $user->uid .'/edit', array('attributes' => array('class' => 'btn btn-default'))); ?>
+            	<?php print l('Logout', 'logout', array('attributes' => array('class' => 'btn btn-default'))); ?>
             </div>
             <!-- user dropdown ends -->
         </div>
@@ -200,8 +190,8 @@
             <!-- content starts -->
 		    <div class="row">
 			    <div class="box col-md-12">
+			    	<?php print $messages; ?>
 				    <div class="box-inner">
-					    <?php print $messages; ?>
 					    <?php print $content; ?>
 				    </div>
 			    </div>

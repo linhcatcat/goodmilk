@@ -96,15 +96,17 @@ function admin_preprocess(&$vars, $hook) {
  * @param $hook
  *   The name of the template being rendered ("page" in this case.)
  */
-/*
+
 function admin_preprocess_page(&$vars, $hook) {
 	//$vars['sample_variable'] = t('Lorem ipsum.');
-	$node = $vars['node'];
-	$vars['template_files'][] = 'page-node-'.$node->type;
+	//$node = $vars['node'];
+	//$vars['template_files'][] = 'page-node-'.$node->type;
 	// To remove a class from $classes_array, use array_diff().
 	//$vars['classes_array'] = array_diff($vars['classes_array'], array('class-to-remove'));
+	if (isset($vars['messages']) && $vars['messages']) {
+	    $vars['messages'] = '<div class="alert alert-info">'. $vars['messages'] .'</div>';
+  	}
 }
-*/
 
 /**
  * Override or insert variables into the node templates.

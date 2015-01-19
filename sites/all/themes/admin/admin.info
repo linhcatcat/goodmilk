@@ -25,7 +25,7 @@ base theme = zen
 
 
 ;BOOTSTRAP
-
+stylesheets[all][]   = css/bootstrap-custom.css
 
 ; stylesheets[handheld][] = css/mobile.css
 ; stylesheets[only screen and (max-device-width: 480px)][] = css/iphone.css
