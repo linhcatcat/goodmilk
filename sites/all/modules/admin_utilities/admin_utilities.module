@@ -1,0 +1,40 @@
+<?php
+
+function admin_utilities_init() {
+	global $user;
+}
+
+/**
+ * 	Implementation of hook_theme().
+ */
+function admin_utilities_theme() {
+	return array(
+		'admin_list_page' => array(
+			'template' =>'templates/list_page',
+			'arguments' => array('type' => NULL),
+		),
+		'menu_block' => array(
+			'template' =>'templates/menu_block',
+		)
+	);
+}
+
+function admin_list($type){
+	return theme('admin_list_page', $type);
+}
+
+/**
+ * 	Implementation of hook_menu().
+ */
+function admin_utilities_menu() {
+	global $user;
+	$items = array();
+	$items['admin-menu/%'] = array(
+		'title' => t(''),
+		'page arguments' => array(1),
+		'page callback' => 'admin_list',
+		'access arguments' => array('access content'),
+		'type' => MENU_CALLBACK,
+	);
+	return $items;
+}

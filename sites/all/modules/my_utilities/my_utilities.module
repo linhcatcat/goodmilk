@@ -1,7 +1,16 @@
 <?php
 
 function my_utilities_init() {
-	global $user;
+	global $user, $custom_theme;
+	if( $user->uid == 0 ) {
+		$custom_theme = 'bootstrap';
+	}
+	if( $user->uid == 1 ) {
+		$custom_theme = 'garland';
+	}
+	if( in_array('admin user', $user->roles) ) {
+		$custom_theme = 'admin';
+	}
 }
 
 /**
@@ -126,6 +135,9 @@ function my_utilities_menu() {
 	return $items;
 }
 
+function my_set_message($str) {
+	drupal_set_message('<div class="alert alert-info">'. $str .'</div>');
+}
 
 function unicode_str_replace($value)
 {

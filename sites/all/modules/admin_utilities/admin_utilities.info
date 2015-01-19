@@ -1,0 +1,9 @@
+; $Id: admin_utilities.info,v 1.0 Exp $
+name = Admin_utilities
+description = Admin utilities of LinhTran.
+package = My
+core = 6.x
+
+; Information added by LinhTran on Jan-13-2015
+version = "6.x-1.0"
+core = "6.x"
