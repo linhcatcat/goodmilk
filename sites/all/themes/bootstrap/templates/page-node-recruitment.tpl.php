@@ -136,13 +136,31 @@
 					<a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo" class="logo"><img class="img-responsive" src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" /></a>
 				<?php endif; ?>
 				<?php if (is_array($primary_links)) : ?>
+					<?php
+					$active_recruitment = false;
+					$arg0 = arg(0);
+					if( isset($arg0) && $arg0 == 'node' ) {
+						$arg1 = arg(1);
+						$arg2 = arg(2);
+						if( isset($arg1) && $arg1 && !isset($arg2) ) {
+							$node_recruitment = node_load( $arg1 );
+							if( $node_recruitment->type == 'recruitment' ) {
+								$active_recruitment = true;
+							}
+						}
+					}
+				?>
 					<ul class="nav nav-list">
 						<?php foreach ($primary_links as $link): ?>
 							<li>
 							<?php
 								$href = $link['href'] == "<front>" ? base_path() : base_path() . $link['href'];
-								print l($link['title'], $link['href']);
-								//print "<a href='" . $href . "'>" . $link['title'] . "</a>";
+								$node_menu = explode('/', $link['href']);
+								if( $active_recruitment && $node_menu[0] == 'recruitment' ) {
+									print l($link['title'], $link['href'], array('attributes' => array('class' => 'active')));
+								} else {
+									print l($link['title'], $link['href']);
+								}
 							?>
 							</li>
 						<?php endforeach; ?>
@@ -162,23 +180,21 @@
 					</div>
 				</div>
 				<?php
-					$result = db_query('SELECT n.nid, n.title, n.created
-						FROM {node} n WHERE n.type = "recruitment"
-						ORDER BY n.created DESC');
-					$node = db_fetch_object($result);
-					$node = node_load($node->nid);
+					$recruitment = node_load(array(
+						'type' => 'recruitment',
+					));
 				?>
 				<div class="content1">
 					<div class="sub-title">
-						<h1 class="title"><?php print $node->title; ?></h1>
+						<h1 class="title"><?php print $title; ?></h1>
 					</div>
 					<div class="sub_content">
 						<div class="span12">
-							<?php print $node->field_recruitment_content[0]['value']; ?>
+							<?php print $content; ?>
 						</div>
 						<div class="clearfix"></div>
 						<div>
-							<?php print theme('other_recruitment_block', $node->nid); ?>
+							<?php print theme('other_recruitment_block', arg(1)); ?>
 						</div>
 					</div>
 				</div>

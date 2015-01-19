@@ -333,7 +333,10 @@ ul.nav-stacked.vertical-menu {
 .user-login .description {
 	display: none;
 }
-
+.other-recruitment h4.title {
+	text-transform: uppercase;
+	color: #e30613;
+}
 
 
 
