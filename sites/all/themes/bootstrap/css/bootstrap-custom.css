@@ -337,7 +337,16 @@ ul.nav-stacked.vertical-menu {
 	text-transform: uppercase;
 	color: #e30613;
 }
-
+.fade-slide-show {
+	height: 0;
+	z-index: -1;
+}
+.fade-slide-show .slick-slide img {
+	max-height: 675px;
+}
+.fade-slide-show .slick-slide .image {
+	padding: 0;
+}
 
 
 
