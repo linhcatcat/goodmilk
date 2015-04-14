@@ -170,7 +170,7 @@
 </header>
 <div class="container">
 	<div class="main-title">
-		<h2 class="title">Dòng sản phẩm</2>
+		<h2 class="title">Dòng sản phẩm</h2>
 	</div>
 	<?php
 		$homeInfo = node_load(array(

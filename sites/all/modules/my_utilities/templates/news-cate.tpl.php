@@ -1,7 +1,7 @@
 <?php
 	global $base_url, $user;
 	$taxo = taxonomy_get_tree(1);
-	$pager_limit = 3;
+	$pager_limit = 5;
 	$sql = "SELECT node.nid AS nid,
 	   		node.title AS title,
 	   		node_data_field_news_content.field_news_content_value AS news_content,

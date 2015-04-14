@@ -21,6 +21,9 @@ function my_utilities_theme() {
 		'intro_page' => array(
 			'template' =>'templates/intro',
 		),
+		'gmap' => array(
+			'template' =>'templates/gmap',
+		),
 		'home_page' => array(
 			'template' =>'templates/home',
 		),

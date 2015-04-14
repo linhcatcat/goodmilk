@@ -13,8 +13,8 @@
 					<a href="#"><img src="<?php echo $base_url .'/'. drupal_get_path('theme', 'Bootstrap').'/images/y.png'; ?>" /></a>
 				</p>
 				<ul class="menu-footer">
-					<li><a href="#">Trang chủ</a></li>
-					<li><a href="#">Thông tin liên lac</a></li>
+					<li><?php print l('Trang chủ', 'home'); ?></li>
+					<li><?php print l('Thông tin liên lạc', 'contact'); ?></li>
 					<li><a href="#">Điều khoản sử dụng</a></li>
 					<li><a href="#">Sơ đồ website</a></li>
 				</ul>

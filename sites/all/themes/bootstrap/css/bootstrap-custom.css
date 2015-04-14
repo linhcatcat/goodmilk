@@ -22,7 +22,7 @@ h1.title {
 }
 .menu .logo {
 	position: absolute;
-	top: -100px;
+	top: -125px;
 	left: 0px;
 	right: 0;
 	text-align: center;
@@ -33,14 +33,14 @@ h1.title {
 	background: url("../images/bg-menu1.png") repeat scroll 0 0 transparent;
 	box-shadow: none;
 	border: none;
-	margin-top: 115px;
+	margin-top: 155px;
 }
 .menu .well ul {
 	background: url("../images/bg-menu2.png") repeat scroll 0 0 transparent;
 	-webkit-border-radius: 4px;
      -moz-border-radius: 4px;
           border-radius: 4px;
-  	padding-top: 80px;
+  	padding-top: 12px;
   	padding-left: 0;
   	padding-right: 0;
   	height: 400px;
@@ -58,7 +58,7 @@ h1.title {
 	margin: 0;
 	text-transform: uppercase;
 	font-size: 14px;
-	color: #0a7541;
+	color: #2e4295;
 }
 .menu .well ul li a:hover,
 .menu .well ul li a.active {
@@ -143,7 +143,7 @@ footer .container .pagination-right {
 .sub-title h2 {
 	font-size: 24px;
 	font-weight: 400;
-	color: #e51824;
+	color: #2e4295;
 	text-transform: uppercase;
 	padding-left: 20px;
 }
@@ -167,6 +167,7 @@ footer .container .pagination-right {
 	font-size: 16px;
 	line-height: 20px;
 	margin-right: 15px;
+	color: #262462;
 }
 .hotline ul li.phone {
 	background: url("../images/icon-phone.png") no-repeat scroll 0 0 transparent;
@@ -189,7 +190,7 @@ footer .container .pagination-right {
     padding-top: 20px;
 }
 .main-title h2 {
-	color: #86c01f;
+	color: #262462;
 	font-size: 24px;
 	font-weight: 400;
 	text-transform: uppercase;
@@ -198,7 +199,7 @@ footer .container .pagination-right {
 	margin-top: 30px;
 }
 .home-tab li a:hover{
-	color: #84be41;
+	color: #e30613;
 	background-color: #fff;
 }
 .home-tab li a {
@@ -212,7 +213,7 @@ footer .container .pagination-right {
 	border-left: none;
 	border-right: none;
 	border-bottom: 3px solid #ed1c24;
-	color: #84be41;
+	color: #e30613;
 }
 .home-tab > li:first-child a {
 	padding-left: 0;
@@ -240,7 +241,7 @@ ul.nav-stacked.vertical-menu {
 	border-right: none;
 	text-align: right;
 	font-size: 14px;
-	color: #0a7541;
+	color: #2e4295;
 }
 .nav-stacked.vertical-menu li a.active,
 .nav-stacked.vertical-menu li a:hover {
@@ -253,7 +254,7 @@ ul.nav-stacked.vertical-menu {
 .news .sub-title h1.title {
 	font-size: 24px;
 	font-weight: 400;
-	color: #86c01f;
+	color: #2e4295;
 }
 .thumb img {
 	width: 100%;
@@ -278,7 +279,10 @@ ul.nav-stacked.vertical-menu {
 .news-item {
 	margin-bottom: 20px;
 }
-
+.product a,
+.news a {
+	color: #000;
+}
 .item-list .pager li.pager-current {
 	background-color: #ed1c24;
 	padding-left: 10px;
@@ -479,3 +483,22 @@ ul.nav-stacked.vertical-menu {
 	right: -20px;
 }
 [dir="rtl"] .slick-next { left: -25px; right: auto; }
+
+.slider-wrap .slider .slick-slide .image img {
+	width: 110px!important;
+	margin-left: auto;
+	margin-right: auto;
+}
+.view-gmap {
+	padding-top: 10px;
+}
+.modal-header .close {
+	margin-top: -8px!important;
+}
+.modal-body {
+	padding: 0!important;
+}
+.modal.fade {
+	width: 640px;
+	margin-left: -320px;
+}

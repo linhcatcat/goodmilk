@@ -169,7 +169,9 @@
 					<div class="clearfix"></div>
 				</div>
 				<div class="youtube">
+					<?php if( $intro->field_intro_embed[0]['value'] && $intro->field_intro_embed[0]['value'] != "" ) { ?>
 					<iframe width="680" height="414" src="<?php print $intro->field_intro_embed[0]['value']; ?>" frameborder="0" allowfullscreen></iframe>
+					<?php } ?>
 				</div>
 			</div>
 		</div>
@@ -178,7 +180,9 @@
 <div class="container">
 	<div class="row-fluid">
 		<div class="main-title">
-			<p class="title"><?php print $intro->title; ?></p>
+			<div class="main-title">
+				<h2 class="title"><?php print $intro->title; ?></h2>
+			</div>
 		</div>
 		<div class="main-content">
 			<?php print $intro->field_intro_content[0]['value']; ?>

@@ -181,6 +181,77 @@
 								<p>Email: <a href="mailto:<?php print $contact->field_contact_email[0]['value']; ?>"><?php print $contact->field_contact_email[0]['value']; ?></a></p>
 								<p>Website: <a target="_blank" href="<?php print $contact->field_contact_website[0]['value']; ?>"><?php print $contact->field_contact_website[0]['value']; ?></a></p>
 							</div>
+							<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAnfs7bKE82qgb3Zc2YyS-oBT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSySz_REpPq-4WZA27OwgbtyR3VcA" 
+	type="text/javascript"></script>
+							<script type="text/javascript">
+								var map = null;
+								function loadGmap(loc) {
+									if (GBrowserIsCompatible()) {
+										var point;
+										var map=new GMap2(document.getElementById(loc));
+
+										map.addControl(new GOverviewMapControl());
+										map.enableDoubleClickZoom();
+										map.enableScrollWheelZoom();
+										map.addControl(new GMapTypeControl());
+										map.addControl(new GSmallMapControl());
+										var address='<font size="2" face="Arial">';
+										address = address + '<?php print t('Số 413/7/6 Lê Văn Quơi,'); ?> <br/>';
+										address = address + '<?php print t('KP.5 P. Bịnh Trị Đông A,'); ?> <br/>';
+										address = address + '<?php print t('Q. Bình Tân, TP. HCM'); ?> ';
+										point = new GLatLng(10.7762472,106.6057571);
+										var marker = new GMarker(point);
+										map.setCenter(point,15);
+										map.addOverlay(marker);
+										//map.setMapType(G_SATELLITE_3D_MAP);
+										//map.setMapType(G_HYBRID_MAP);
+										//GEvent.addListener(marker, "click", function() {
+										//marker.openInfoWindowTabsHtml([new GInfoWindowTab("Address",address)],{maxUrl:"http://abhishek.sur.googlepages.com"});
+										//});
+									}
+								}
+								function loadGmap1(loc) {
+									if (GBrowserIsCompatible()) {
+										var point;
+										var map=new GMap2(document.getElementById(loc));
+
+										map.addControl(new GOverviewMapControl());
+										map.enableDoubleClickZoom();
+										map.enableScrollWheelZoom();
+										map.addControl(new GMapTypeControl());
+										map.addControl(new GSmallMapControl());
+										var address='<font style="text-align:center;display:block" size="2" face="Arial">';
+										address = address + '<?php print $contact->field_contact_address[0]['value']; ?>';
+										point = new GLatLng(10.7762472,106.6057571);
+										var marker = new GMarker(point);
+										map.setCenter(point,15);
+										map.addOverlay(marker);
+										//map.setMapType(G_SATELLITE_3D_MAP);
+										//map.setMapType(G_HYBRID_MAP);
+										GEvent.addListener(marker, "click", function() {
+											marker.openInfoWindowTabsHtml([new GInfoWindowTab("Address",address)],{maxUrl:"http://abhishek.sur.googlepages.com"});
+										});
+									}
+								}
+								
+							</script>
+							<body onunload="GUnload()" onload="loadGmap('map_canvas');loadGmap1('view_map');">
+							    <div id="map_canvas" style="height:182px"></div>
+							</body>
+
+							<div class="view-gmap">Xem <a href="#" data-toggle="modal" data-target="#myModal">GoodMilk</a> ở bản đồ lớn hơn</div>
+							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							  	<div class="modal-dialog">
+								    <div class="modal-content">
+								      	<div class="modal-header">
+								        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								      	</div>
+								      	<div class="modal-body">
+								        	<div id="view_map" style="height:400px"></div>
+								      	</div>
+								    </div>
+							  	</div>
+							</div>
 						</div>
 						<div class="clearfix"></div>
 					</div>
